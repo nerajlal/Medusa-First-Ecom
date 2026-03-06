@@ -1,0 +1,41 @@
+# Medusa .gitignore
+
+# Dependencies
+node_modules/
+.next/
+.cache/
+.yarn/
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.staging
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Medusa specific
+medusa-config.js
+medusa-config.ts
+backend/
+storefront/
+data/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Sub-projects
+medusa-store/medusa-store/node_modules/
+medusa-store/medusa-store-storefront/node_modules/
+medusa-store/medusa-store/.next/
+medusa-store/medusa-store-storefront/.next/
+medusa-store/medusa-store/dist/
+medusa-store/medusa-store/.cache/
