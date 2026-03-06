@@ -21,11 +21,11 @@ export default async function Footer() {
               href="/"
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase tracking-widest font-bold text-xl"
             >
-              Medusa Store
+              Task Store
             </LocalizedClientLink>
             <div className="max-w-[300px]">
               <Text className="text-ui-fg-subtle leading-relaxed">
-                Elevating your shopping experience with curated premium goods and exceptional service.
+                Elevating your shopping experience with India's finest curated premium goods and exceptional service.
               </Text>
             </div>
             <div className="flex items-center gap-x-4 text-ui-fg-subtle">
@@ -131,7 +131,7 @@ export default async function Footer() {
 
         <div className="flex flex-col gap-y-4 md:flex-row w-full mb-16 justify-between pt-8 border-t border-ui-border-base text-ui-fg-muted">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+            © {new Date().getFullYear()} Task Store. All rights reserved.
           </Text>
           <div className="flex items-center gap-x-6">
             <Text className="txt-compact-small hover:text-ui-fg-base cursor-pointer">Privacy Policy</Text>

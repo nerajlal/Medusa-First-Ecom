@@ -8,9 +8,9 @@ import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Medusa Store | Premium Ecommerce",
+  title: "Task Store | India's Premium Storefront",
   description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+    "Explore a curated selection of premium products at Task Store, India's leading destination for modern lifestyle essentials.",
 }
 
 export default async function Home(props: {

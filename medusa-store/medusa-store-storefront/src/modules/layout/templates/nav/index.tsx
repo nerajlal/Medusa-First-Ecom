@@ -40,7 +40,7 @@ export default async function Nav() {
               className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase tracking-[0.2em] font-bold text-lg"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              Task Store
             </LocalizedClientLink>
           </div>
 

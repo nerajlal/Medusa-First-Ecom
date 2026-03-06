@@ -8,14 +8,14 @@ const Hero = () => {
         <div className="max-w-[700px] flex flex-col gap-y-4">
           <Heading
             level="h1"
-            className="text-4xl leading-tight text-white small:text-6xl font-semibold tracking-tight uppercase"
+            className="text-4xl leading-tight text-white small:text-7xl font-bold tracking-tight uppercase"
           >
-            Redefine Your Style
+            Modern Indian Living.
           </Heading>
           <Text
             className="text-lg leading-relaxed text-ui-fg-subtle max-w-[500px] mx-auto"
           >
-            Experience the future of commerce with our premium Medusa-powered storefront. Quality meets modern engineering.
+            Carefully curated for the modern Indian lifestyle. Discover premium essentials designed for quality and craftsmanship at Task Store.
           </Text>
         </div>
         <LocalizedClientLink href="/store">
