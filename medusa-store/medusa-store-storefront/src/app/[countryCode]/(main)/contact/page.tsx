@@ -2,14 +2,11 @@ import { Heading, Text, Button } from "@medusajs/ui"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "Contact Us | Task Store",
-    description: "Get in touch with the Task Store support team.",
+    title: "Contact Us — Metora Luxury Hotel",
+    description: "Get in touch with Metora for reservations, inquiries, and personalised assistance.",
 }
 
 export default function ContactPage() {
-    return (
-        <div className="py-24 bg-white">
-            <div className="content-container flex flex-col gap-y-12">
                 <div className="flex flex-col gap-y-4 max-w-[800px]">
                     <span className="text-ui-fg-subtle uppercase tracking-[0.4em] text-sm font-semibold">
                         Support
@@ -72,7 +69,7 @@ export default function ContactPage() {
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }

@@ -2,14 +2,11 @@ import { Heading, Text } from "@medusajs/ui"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-    title: "About Us | Task Store",
-    description: "Learn more about the Task Store brand and our commitment to quality.",
+    title: "About Us — Metora Luxury Hotel",
+    description: "Discover the story behind Metora — a sanctuary where thoughtful design meets genuine hospitality.",
 }
 
 export default function AboutPage() {
-    return (
-        <div className="py-24 bg-white">
-            <div className="content-container flex flex-col gap-y-12">
                 <div className="flex flex-col gap-y-4 max-w-[800px]">
                     <span className="text-ui-fg-subtle uppercase tracking-[0.4em] text-sm font-semibold">
                         Our Story
@@ -52,7 +49,7 @@ export default function AboutPage() {
                         <Text className="text-ui-fg-subtle">Built for life, designed for the future.</Text>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
