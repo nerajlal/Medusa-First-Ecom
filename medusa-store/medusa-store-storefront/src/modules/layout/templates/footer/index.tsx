@@ -4,7 +4,6 @@ import { Text, clx, Heading } from "@medusajs/ui"
 import { Github, Facebook, X } from "@medusajs/icons"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -25,7 +24,7 @@ export default async function Footer() {
             </LocalizedClientLink>
             <div className="max-w-[300px]">
               <Text className="text-ui-fg-subtle leading-relaxed">
-                Elevating your shopping experience with India's finest curated premium goods and exceptional service.
+                Elevating your shopping experience with India&apos;s finest curated premium goods and exceptional service.
               </Text>
             </div>
             <div className="flex items-center gap-x-4 text-ui-fg-subtle">
@@ -41,7 +40,7 @@ export default async function Footer() {
             </div>
           </div>
 
-          <div className="text-small-regular gap-12 md:gap-x-24 grid grid-cols-2 sm:grid-cols-3 w-full large:w-auto">
+          <div className="text-small-regular gap-12 md:gap-x-24 grid grid-cols-2 sm:grid-cols-4 w-full large:w-auto">
             {productCategories && productCategories?.length > 0 && (
               <div className="flex flex-col gap-y-6">
                 <Heading level="h3" className="text-xs uppercase tracking-widest font-bold text-ui-fg-base">
@@ -100,31 +99,30 @@ export default async function Footer() {
                     Contact
                   </LocalizedClientLink>
                 </li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-y-6">
+              <Heading level="h3" className="text-xs uppercase tracking-widest font-bold text-ui-fg-base">
+                Legal
+              </Heading>
+              <ul className="grid grid-cols-1 gap-y-3 text-ui-fg-subtle">
+                <li>
+                  <LocalizedClientLink href="/privacy-policy" className="hover:text-ui-fg-base transition-colors">
+                    Privacy Policy
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink href="/terms-of-service" className="hover:text-ui-fg-base transition-colors">
+                    Terms of Service
+                  </LocalizedClientLink>
+                </li>
                 <li>
                   <a href="https://docs.medusajs.com" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
                     Documentation
                   </a>
                 </li>
               </ul>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-y-6 w-full large:w-[350px]">
-            <Heading level="h3" className="text-xs uppercase tracking-widest font-bold text-ui-fg-base">
-              Newsletter
-            </Heading>
-            <Text className="text-ui-fg-subtle">
-              Join our newsletter for the latest products and exclusive offers.
-            </Text>
-            <div className="flex w-full group">
-              <input
-                type="email"
-                placeholder="Email address"
-                className="bg-ui-bg-subtle border border-ui-border-base rounded-l-md px-4 py-2 w-full focus:outline-none focus:border-ui-fg-base transition-colors"
-              />
-              <button className="bg-ui-bg-base text-white px-6 py-2 rounded-r-md hover:bg-ui-bg-base-hover transition-all font-medium">
-                Join
-              </button>
             </div>
           </div>
         </div>
@@ -134,9 +132,7 @@ export default async function Footer() {
             © {new Date().getFullYear()} Task Store. All rights reserved.
           </Text>
           <div className="flex items-center gap-x-6">
-            <Text className="txt-compact-small hover:text-ui-fg-base cursor-pointer">Privacy Policy</Text>
-            <Text className="txt-compact-small hover:text-ui-fg-base cursor-pointer">Terms of Service</Text>
-            {/* <MedusaCTA /> */}
+            <Text className="txt-compact-small text-ui-fg-muted">India</Text>
           </div>
         </div>
       </div>
