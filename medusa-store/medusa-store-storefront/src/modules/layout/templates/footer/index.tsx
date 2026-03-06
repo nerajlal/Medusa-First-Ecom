@@ -136,7 +136,7 @@ export default async function Footer() {
           <div className="flex items-center gap-x-6">
             <Text className="txt-compact-small hover:text-ui-fg-base cursor-pointer">Privacy Policy</Text>
             <Text className="txt-compact-small hover:text-ui-fg-base cursor-pointer">Terms of Service</Text>
-            <MedusaCTA />
+            {/* <MedusaCTA /> */}
           </div>
         </div>
       </div>
