@@ -2,43 +2,65 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+    faChartLine,
+    faCalendarCheck,
+    faBed,
+    faUsers,
+    faCreditCard,
+    faImage,
+    faGear,
+    faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons"
 
 const navItems = [
-    { label: "Dashboard", href: "/hotel-admin", icon: "📊" },
-    { label: "Bookings", href: "/hotel-admin/bookings", icon: "📋" },
-    { label: "Rooms", href: "/hotel-admin/rooms", icon: "🛏️" },
-    { label: "Guests", href: "/hotel-admin/guests", icon: "👤" },
-    { label: "Payments", href: "/hotel-admin/payments", icon: "💳" },
-    { label: "Content", href: "/hotel-admin/content", icon: "🖼️" },
-    { label: "Settings", href: "/hotel-admin/settings", icon: "⚙️" },
+    { label: "Dashboard", href: "/hotel-admin", icon: faChartLine },
+    { label: "Bookings", href: "/hotel-admin/bookings", icon: faCalendarCheck },
+    { label: "Rooms", href: "/hotel-admin/rooms", icon: faBed },
+    { label: "Guests", href: "/hotel-admin/guests", icon: faUsers },
+    { label: "Payments", href: "/hotel-admin/payments", icon: faCreditCard },
+    { label: "Content", href: "/hotel-admin/content", icon: faImage },
+    { label: "Settings", href: "/hotel-admin/settings", icon: faGear },
 ]
 
 export default function AdminSidebar() {
     const pathname = usePathname()
 
     return (
-        <aside className="w-64 bg-[#0a1628] text-white flex flex-col min-h-screen fixed left-0 top-0 z-40">
-            {/* Logo */}
-            <div className="p-8 border-b border-white/10">
-                <p className="font-playfair text-2xl font-bold tracking-[0.2em] text-white uppercase">Metora</p>
-                <p className="text-[#c9a96e] text-[10px] tracking-[0.4em] uppercase font-medium mt-0.5">Admin Panel</p>
+        <aside className="w-60 bg-[#0a1628] text-white flex flex-col min-h-screen fixed left-0 top-0 z-40 border-r border-white/5">
+            {/* Brand */}
+            <div className="px-7 py-7 border-b border-white/8">
+                <p className="font-playfair text-xl font-bold tracking-[0.25em] text-white uppercase">Metora</p>
+                <p className="text-[#c9a96e] text-[9px] tracking-[0.5em] uppercase font-medium mt-1">Administration</p>
             </div>
 
-            {/* Nav */}
-            <nav className="flex-1 py-6 px-4">
-                <ul className="flex flex-col gap-y-1">
+            {/* Section label */}
+            <div className="px-7 pt-7 pb-2">
+                <p className="text-[9px] uppercase tracking-[0.4em] text-white/25 font-semibold">Main Menu</p>
+            </div>
+
+            {/* Nav items */}
+            <nav className="flex-1 px-3 pb-6">
+                <ul className="flex flex-col gap-y-0.5">
                     {navItems.map((item) => {
-                        const isActive = pathname === item.href || (item.href !== "/hotel-admin" && pathname.startsWith(item.href))
+                        const isActive =
+                            item.href === "/hotel-admin"
+                                ? pathname === "/hotel-admin"
+                                : pathname.startsWith(item.href)
                         return (
                             <li key={item.href}>
                                 <Link
                                     href={item.href}
-                                    className={`flex items-center gap-x-3 px-4 py-3 text-sm font-medium transition-all ${isActive
-                                            ? "bg-[#c9a96e]/15 text-[#c9a96e] border-l-2 border-[#c9a96e]"
-                                            : "text-white/60 hover:text-white hover:bg-white/5"
+                                    className={`flex items-center gap-x-3 px-4 py-2.5 text-[13px] font-medium tracking-wide transition-all ${isActive
+                                            ? "bg-[#c9a96e]/10 text-[#c9a96e] border-l-2 border-[#c9a96e]"
+                                            : "text-white/50 hover:text-white/80 hover:bg-white/4 border-l-2 border-transparent"
                                         }`}
                                 >
-                                    <span className="text-base">{item.icon}</span>
+                                    <FontAwesomeIcon
+                                        icon={item.icon}
+                                        className={`w-3.5 flex-shrink-0 ${isActive ? "text-[#c9a96e]" : "text-white/30"}`}
+                                    />
                                     {item.label}
                                 </Link>
                             </li>
@@ -48,18 +70,19 @@ export default function AdminSidebar() {
             </nav>
 
             {/* Footer */}
-            <div className="p-6 border-t border-white/10">
+            <div className="border-t border-white/8 px-7 py-6 flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-3">
-                    <div className="w-8 h-8 bg-[#c9a96e] flex items-center justify-center text-[#0a1628] font-bold text-sm">
+                    <div className="w-7 h-7 bg-[#c9a96e]/10 border border-[#c9a96e]/30 flex items-center justify-center text-[#c9a96e] text-xs font-bold">
                         A
                     </div>
                     <div>
-                        <p className="text-white text-xs font-bold">Admin</p>
-                        <p className="text-white/40 text-[10px]">admin@metora.in</p>
+                        <p className="text-white text-xs font-semibold">Admin</p>
+                        <p className="text-white/30 text-[10px] tracking-wide">admin@metora.in</p>
                     </div>
                 </div>
-                <Link href="/" className="block mt-4 text-[10px] uppercase tracking-widest text-white/30 hover:text-[#c9a96e] transition-colors">
-                    ← View Hotel Site
+                <Link href="/dk" className="flex items-center gap-x-2 text-[10px] uppercase tracking-[0.3em] text-white/25 hover:text-[#c9a96e] transition-colors">
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="w-2.5" />
+                    View Hotel Site
                 </Link>
             </div>
         </aside>

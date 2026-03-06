@@ -1,14 +1,12 @@
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-    title: "Dashboard — Metora Admin",
-}
+export const metadata: Metadata = { title: "Dashboard — Metora Admin" }
 
 const stats = [
-    { label: "Total Bookings", value: "148", change: "+12%", icon: "📋", color: "text-blue-600" },
-    { label: "Rooms Occupied", value: "18 / 24", change: "75%", icon: "🛏️", color: "text-green-600" },
-    { label: "Revenue (Month)", value: "₹12,45,000", change: "+8%", icon: "💰", color: "text-[#c9a96e]" },
-    { label: "Guest Satisfaction", value: "4.9 / 5", change: "★★★★★", icon: "⭐", color: "text-amber-500" },
+    { label: "Total Bookings", value: "148", sub: "+12% this month" },
+    { label: "Rooms Occupied", value: "18 / 24", sub: "75% occupancy" },
+    { label: "Revenue (March)", value: "₹12,45,000", sub: "+8% vs last month" },
+    { label: "Guest Rating", value: "4.9 / 5.0", sub: "Based on 84 reviews" },
 ]
 
 const recentBookings = [
@@ -19,74 +17,70 @@ const recentBookings = [
     { id: "BK-1020", guest: "Anjali Krishnan", room: "Deluxe Room", checkin: "04 Mar 2026", checkout: "06 Mar 2026", amount: "₹17,000", status: "Cancelled" },
 ]
 
-const statusColors: Record<string, string> = {
-    "Confirmed": "bg-blue-50 text-blue-700",
-    "Checked In": "bg-green-50 text-green-700",
-    "Checked Out": "bg-neutral-100 text-neutral-500",
-    "Cancelled": "bg-red-50 text-red-600",
+const statusStyle: Record<string, string> = {
+    "Confirmed": "text-blue-600 bg-blue-50",
+    "Checked In": "text-emerald-700 bg-emerald-50",
+    "Checked Out": "text-neutral-400 bg-neutral-100",
+    "Cancelled": "text-red-500 bg-red-50",
 }
 
 export default function AdminDashboard() {
     return (
-        <div className="p-8">
-            {/* Header */}
-            <div className="mb-8">
-                <h1 className="font-playfair text-3xl font-bold text-[#0a1628]">Good evening, Admin 👋</h1>
-                <p className="text-neutral-500 mt-1">Here's what's happening at Metora today.</p>
+        <div className="p-10">
+            {/* Page Header */}
+            <div className="mb-10 border-b border-neutral-200 pb-8">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-[#c9a96e] font-semibold mb-2">Overview</p>
+                <h1 className="font-playfair text-3xl font-bold text-[#0a1628]">Dashboard</h1>
+                <p className="text-neutral-400 text-sm mt-1">Live snapshot of hotel operations.</p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
-                {stats.map((stat) => (
-                    <div key={stat.label} className="bg-white border border-neutral-100 p-6 flex flex-col gap-y-3">
-                        <div className="flex items-center justify-between">
-                            <span className="text-2xl">{stat.icon}</span>
-                            <span className={`text-xs font-bold ${stat.color}`}>{stat.change}</span>
-                        </div>
-                        <div>
-                            <p className="text-2xl font-bold text-[#0a1628]">{stat.value}</p>
-                            <p className="text-xs text-neutral-400 uppercase tracking-widest mt-1">{stat.label}</p>
-                        </div>
+            {/* KPI Cards */}
+            <div className="grid grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+                {stats.map((s) => (
+                    <div key={s.label} className="bg-white border border-neutral-150 p-6 flex flex-col gap-y-2">
+                        <p className="font-playfair text-2xl font-bold text-[#0a1628]">{s.value}</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-semibold">{s.label}</p>
+                        <p className="text-xs text-[#c9a96e]">{s.sub}</p>
                     </div>
                 ))}
             </div>
 
-            {/* Recent Bookings */}
-            <div className="bg-white border border-neutral-100">
+            {/* Recent Bookings Table */}
+            <div className="bg-white border border-neutral-150">
                 <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
-                    <h2 className="font-bold text-[#0a1628] text-sm uppercase tracking-widest">Recent Bookings</h2>
-                    <a href="/hotel-admin/bookings" className="text-xs text-[#c9a96e] hover:underline font-medium">View All →</a>
+                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#0a1628]">Recent Bookings</p>
+                    <a href="/hotel-admin/bookings" className="text-[11px] text-[#c9a96e] hover:underline tracking-wide font-medium">
+                        View All
+                    </a>
                 </div>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                        <thead className="bg-neutral-50 border-b border-neutral-100">
-                            <tr>
-                                {["Booking ID", "Guest", "Room", "Check-In", "Check-Out", "Amount", "Status"].map((h) => (
-                                    <th key={h} className="text-left px-6 py-3 text-xs font-bold text-neutral-400 uppercase tracking-wider">
-                                        {h}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {recentBookings.map((b, i) => (
-                                <tr key={b.id} className={`border-b border-neutral-50 hover:bg-neutral-50 transition-colors ${i % 2 === 0 ? "" : ""}`}>
-                                    <td className="px-6 py-4 font-mono text-xs text-[#c9a96e] font-bold">{b.id}</td>
-                                    <td className="px-6 py-4 font-medium text-[#0a1628]">{b.guest}</td>
-                                    <td className="px-6 py-4 text-neutral-600">{b.room}</td>
-                                    <td className="px-6 py-4 text-neutral-500">{b.checkin}</td>
-                                    <td className="px-6 py-4 text-neutral-500">{b.checkout}</td>
-                                    <td className="px-6 py-4 font-bold text-[#0a1628]">{b.amount}</td>
-                                    <td className="px-6 py-4">
-                                        <span className={`px-3 py-1 text-xs font-bold rounded-full ${statusColors[b.status]}`}>
-                                            {b.status}
-                                        </span>
-                                    </td>
-                                </tr>
+                <table className="w-full text-sm">
+                    <thead className="border-b border-neutral-100">
+                        <tr>
+                            {["Booking", "Guest", "Room", "Check-In", "Check-Out", "Amount", "Status"].map((h) => (
+                                <th key={h} className="text-left px-6 py-3 text-[10px] uppercase tracking-[0.3em] font-bold text-neutral-400">
+                                    {h}
+                                </th>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {recentBookings.map((b) => (
+                            <tr key={b.id} className="border-b border-neutral-50 hover:bg-neutral-50/60 transition-colors">
+                                <td className="px-6 py-4 font-mono text-xs text-[#c9a96e] font-semibold">{b.id}</td>
+                                <td className="px-6 py-4 font-medium text-[#0a1628]">{b.guest}</td>
+                                <td className="px-6 py-4 text-neutral-500">{b.room}</td>
+                                <td className="px-6 py-4 text-neutral-400 text-xs">{b.checkin}</td>
+                                <td className="px-6 py-4 text-neutral-400 text-xs">{b.checkout}</td>
+                                <td className="px-6 py-4 font-semibold text-[#0a1628]">{b.amount}</td>
+                                <td className="px-6 py-4">
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 ${statusStyle[b.status]}`}>
+                                        {b.status}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     )
