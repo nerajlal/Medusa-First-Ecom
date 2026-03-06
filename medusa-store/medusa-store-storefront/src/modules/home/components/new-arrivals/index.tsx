@@ -38,10 +38,13 @@ export default async function NewArrivals({
             <div className="content-container">
                 <ul className="grid grid-cols-1 small:grid-cols-4 gap-12">
                     {products.map((product, index) => (
-                        <li key={product.id} className={clx({
-                            "small:mt-12": index % 2 !== 0,
-                            "small:mb-12": index % 2 === 0,
-                        })}>
+                        <li
+                            key={product.id}
+                            className={clx("w-full transition-all duration-700", {
+                                "small:mt-16": index % 2 !== 0,
+                                "small:mb-16": index % 2 === 0,
+                            })}
+                        >
                             <ProductPreview product={product} region={region} isFeatured />
                         </li>
                     ))}

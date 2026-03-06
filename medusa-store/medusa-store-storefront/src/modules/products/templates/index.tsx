@@ -38,14 +38,29 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
     const variant = product.variants.find((v) => v.id === selectedVariantId)
 
-    // Check if variant has specific images assigned in Medusa
-    // In Medusa 2.0, images might be on the variant object itself
-    if (variant && variant.images && variant.images.length > 0) {
+    if (!variant) {
+      return images
+    }
+
+    // 1. Try explicit assignment in Medusa Admin
+    if (variant.images && variant.images.length > 0) {
       const variantImageIds = new Map(variant.images.map((img: any) => [img.id, true]))
       const filtered = images.filter((img) => variantImageIds.has(img.id))
+      if (filtered.length > 0) return filtered
+    }
 
-      // If we found filtered images, return them. Otherwise fall back to all images.
-      return filtered.length > 0 ? filtered : images
+    // 2. Smart Fallback: Match variant option values (e.g. "Blue", "Gold") to image URLs
+    const optionValues = variant.options?.map((o) => o.value.toLowerCase()) || []
+    if (optionValues.length > 0) {
+      const smartFiltered = images.filter((img) => {
+        const url = img.url?.toLowerCase() || ""
+        // Check if ANY of the selected option values are present in the image URL
+        return optionValues.some((val) => url.includes(val))
+      })
+
+      if (smartFiltered.length > 0) {
+        return smartFiltered
+      }
     }
 
     return images
