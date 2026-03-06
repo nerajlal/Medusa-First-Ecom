@@ -1,6 +1,6 @@
 import { listProducts } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
-import { Text, Heading } from "@medusajs/ui"
+import { Text, Heading, clx } from "@medusajs/ui"
 import ProductPreview from "@modules/products/components/product-preview"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -24,30 +24,38 @@ export default async function NewArrivals({
     }
 
     return (
-        <div className="content-container py-24 small:py-32">
-            <div className="flex flex-col small:flex-row small:items-end justify-between mb-12 gap-y-4">
-                <div>
-                    <Heading level="h2" className="text-3xl font-semibold uppercase tracking-tight">
-                        New Arrivals
-                    </Heading>
-                    <Text className="text-ui-fg-subtle mt-2 text-lg">
-                        Our latest collection, fresh from the atelier.
-                    </Text>
-                </div>
-                <LocalizedClientLink
-                    href="/store"
-                    className="text-ui-fg-base hover:text-ui-fg-subtle font-medium uppercase tracking-wider text-sm border-b border-ui-fg-base pb-1"
-                >
-                    Explore All Products
-                </LocalizedClientLink>
+        <div className="bg-neutral-50 py-24 small:py-40">
+            <div className="content-container flex flex-col items-center text-center mb-20">
+                <Heading level="h2" className="text-4xl small:text-6xl font-bold uppercase tracking-tighter text-ui-fg-base mb-6">
+                    The Modern Selection.
+                </Heading>
+                <div className="h-px w-20 bg-black mb-6" />
+                <Text className="text-lg small:text-xl text-ui-fg-subtle max-w-[600px] font-normal leading-relaxed">
+                    Explore our latest curation of premium essentials, crafted with precision for the modern lifestyle.
+                </Text>
             </div>
-            <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-6 gap-y-12">
-                {products.map((product) => (
-                    <li key={product.id}>
-                        <ProductPreview product={product} region={region} isFeatured />
-                    </li>
-                ))}
-            </ul>
+
+            <div className="content-container">
+                <ul className="grid grid-cols-1 small:grid-cols-4 gap-12">
+                    {products.map((product, index) => (
+                        <li key={product.id} className={clx({
+                            "small:mt-12": index % 2 !== 0,
+                            "small:mb-12": index % 2 === 0,
+                        })}>
+                            <ProductPreview product={product} region={region} isFeatured />
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="flex justify-center mt-20">
+                    <LocalizedClientLink
+                        href="/store"
+                        className="h-14 px-12 flex items-center justify-center border border-black uppercase tracking-[0.2em] font-bold text-sm hover:bg-black hover:text-white transition-all duration-300 rounded-none"
+                    >
+                        View Full Collection
+                    </LocalizedClientLink>
+                </div>
+            </div>
         </div>
     )
 }
