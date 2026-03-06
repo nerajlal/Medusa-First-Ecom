@@ -1,4 +1,7 @@
-import React, { Suspense } from "react"
+"use client"
+
+import React, { Suspense, useMemo } from "react"
+import { useSearchParams } from "next/navigation"
 
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
@@ -25,6 +28,29 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   countryCode,
   images,
 }) => {
+  const searchParams = useSearchParams()
+  const selectedVariantId = searchParams.get("v_id")
+
+  const variantImages = useMemo(() => {
+    if (!selectedVariantId || !product.variants) {
+      return images
+    }
+
+    const variant = product.variants.find((v) => v.id === selectedVariantId)
+
+    // Check if variant has specific images assigned in Medusa
+    // In Medusa 2.0, images might be on the variant object itself
+    if (variant && variant.images && variant.images.length > 0) {
+      const variantImageIds = new Map(variant.images.map((img: any) => [img.id, true]))
+      const filtered = images.filter((img) => variantImageIds.has(img.id))
+
+      // If we found filtered images, return them. Otherwise fall back to all images.
+      return filtered.length > 0 ? filtered : images
+    }
+
+    return images
+  }, [product, images, selectedVariantId])
+
   if (!product || !product.id) {
     return notFound()
   }
@@ -37,7 +63,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       >
         {/* Left Column: High-Impact Image Gallery */}
         <div className="block w-full relative">
-          <ImageGallery images={images} />
+          <ImageGallery images={variantImages} />
         </div>
 
         {/* Right Column: Sticky Product Info & Actions */}
