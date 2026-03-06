@@ -117,11 +117,11 @@ export default async function Footer() {
                     Terms of Service
                   </LocalizedClientLink>
                 </li>
-                <li>
+                {/* <li>
                   <a href="https://docs.medusajs.com" target="_blank" rel="noreferrer" className="hover:text-ui-fg-base transition-colors">
                     Documentation
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
