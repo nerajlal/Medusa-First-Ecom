@@ -8,32 +8,46 @@ type ImageGalleryProps = {
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   return (
-    <div className="flex items-start relative">
-      <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
-        {images.map((image, index) => {
-          return (
-            <Container
+    <div className="flex flex-col gap-y-4 w-full">
+      {/* Feature Image - The Main Visual */}
+      {images.length > 0 && (
+        <div
+          className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-100 group cursor-zoom-in"
+          key={images[0].id}
+        >
+          <Image
+            src={images[0].url || ""}
+            priority={true}
+            className="absolute inset-0 object-cover rounded-none transition-transform duration-700 group-hover:scale-105"
+            alt="Main product visual"
+            fill
+            sizes="(max-width: 768px) 100vw, 800px"
+          />
+          <div className="absolute inset-0 border border-black/5 pointer-events-none" />
+        </div>
+      )}
+
+      {/* Secondary Images - Tiled Grid */}
+      {images.length > 1 && (
+        <div className="grid grid-cols-2 gap-4">
+          {images.slice(1).map((image, index) => (
+            <div
               key={image.id}
-              className="relative aspect-[29/34] w-full overflow-hidden bg-ui-bg-subtle"
-              id={image.id}
+              className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-100 group cursor-pointer"
             >
-              {!!image.url && (
-                <Image
-                  src={image.url}
-                  priority={index <= 2 ? true : false}
-                  className="absolute inset-0 rounded-rounded"
-                  alt={`Product image ${index + 1}`}
-                  fill
-                  sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
-                  style={{
-                    objectFit: "cover",
-                  }}
-                />
-              )}
-            </Container>
-          )
-        })}
-      </div>
+              <Image
+                src={image.url || ""}
+                priority={false}
+                className="absolute inset-0 object-cover rounded-none transition-transform duration-500 group-hover:scale-110"
+                alt={`Product detail ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 50vw, 400px"
+              />
+              <div className="absolute inset-0 border border-black/5 group-hover:border-black/10 transition-colors pointer-events-none" />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
