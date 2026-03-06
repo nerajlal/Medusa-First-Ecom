@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import AdminSidebar from "./components/sidebar"
-import "../globals.css"
+import "styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "700", "900"] })
