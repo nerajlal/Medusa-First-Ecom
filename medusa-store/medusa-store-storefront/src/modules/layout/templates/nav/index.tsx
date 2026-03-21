@@ -17,63 +17,55 @@ export default async function Nav() {
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="relative h-20 mx-auto duration-200 bg-[#0a1628]/90 backdrop-blur-md border-b border-white/10 transition-all">
-        <nav className="content-container flex items-center justify-between w-full h-full">
-          {/* Left: Hamburger + Nav Links */}
+      <header className="relative h-20 mx-auto border-b duration-200 bg-white/80 backdrop-blur-md border-ui-border-base transition-all">
+        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center gap-x-6">
             <div className="h-full">
               <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
             </div>
-            <div className="hidden small:flex items-center gap-x-8 h-full text-xs font-medium uppercase tracking-[0.15em] text-white/70">
-              <LocalizedClientLink href="/rooms" className="hover:text-[#c9a96e] transition-colors">
-                Rooms
-              </LocalizedClientLink>
-              <LocalizedClientLink href="/about" className="hover:text-[#c9a96e] transition-colors">
-                About
-              </LocalizedClientLink>
-              <LocalizedClientLink href="/contact" className="hover:text-[#c9a96e] transition-colors">
-                Contact
+            <div className="hidden small:flex items-center gap-x-6 h-full font-medium">
+              <LocalizedClientLink
+                href="/store"
+                className="hover:text-ui-fg-base transition-colors"
+                data-testid="nav-store-link"
+              >
+                New Arrivals
               </LocalizedClientLink>
             </div>
           </div>
 
-          {/* Center: Brand Logo */}
           <div className="flex items-center h-full">
             <LocalizedClientLink
               href="/"
-              className="flex flex-col items-center leading-none"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase tracking-[0.2em] font-bold text-lg"
               data-testid="nav-store-link"
             >
-              <span className="font-playfair text-2xl font-bold tracking-[0.3em] text-white uppercase">
-                Metora
-              </span>
-              <span className="text-[9px] uppercase tracking-[0.4em] text-[#c9a96e] font-medium mt-0.5">
-                Luxury Stay
-              </span>
+              Task Store
             </LocalizedClientLink>
           </div>
 
-          {/* Right: Sign In + Book Now */}
-          <div className="flex items-center gap-x-4 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full text-xs font-medium uppercase tracking-[0.15em] text-white/70">
-              <LocalizedClientLink href="/account" className="hover:text-[#c9a96e] transition-colors">
+          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+            <div className="hidden small:flex items-center gap-x-6 h-full font-medium">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base transition-colors"
+                href="/account"
+                data-testid="nav-account-link"
+              >
                 Sign In
               </LocalizedClientLink>
             </div>
-            <LocalizedClientLink
-              href="/rooms"
-              className="hidden small:flex h-10 px-6 items-center bg-[#c9a96e] text-[#0a1628] text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#b8935a] transition-colors"
-            >
-              Book Now
-            </LocalizedClientLink>
             <Suspense
               fallback={
-                <LocalizedClientLink className="text-white/70 hover:text-white flex gap-2 text-xs font-medium" href="/cart">
+                <LocalizedClientLink
+                  className="hover:text-ui-fg-base flex gap-2 font-medium"
+                  href="/cart"
+                  data-testid="nav-cart-link"
+                >
                   Cart (0)
                 </LocalizedClientLink>
               }
             >
-              <div className="font-medium text-white/80">
+              <div className="font-medium">
                 <CartButton />
               </div>
             </Suspense>
