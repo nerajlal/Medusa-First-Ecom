@@ -9,6 +9,7 @@ import PremiumBanner from "@modules/home/components/premium-banner"
 import SocialFeed from "@modules/home/components/social-feed"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
+import { listProducts } from "@lib/data/products"
 
 export const metadata: Metadata = {
   title: "Task Store | India's Premium Storefront",
@@ -29,6 +30,14 @@ export default async function Home(props: {
     fields: "id, handle, title",
   })
 
+  // Fetch 4 products for the New Arrivals section
+  const {
+    response: { products },
+  } = await listProducts({
+    countryCode,
+    queryParams: { limit: 4 },
+  })
+
   if (!region) {
     return null
   }
@@ -41,7 +50,7 @@ export default async function Home(props: {
       <CategorySpotlight />
 
       {/* Product Discovery: New Arrivals */}
-      <NewArrivals region={region} />
+      <NewArrivals products={products} region={region} />
 
       {/* Brand Story / Promotion Banner */}
       <PremiumBanner />
