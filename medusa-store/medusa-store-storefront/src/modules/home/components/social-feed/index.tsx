@@ -1,5 +1,5 @@
 import { Heading, Text } from "@medusajs/ui"
-import { Face } from "@medusajs/icons"
+import { Camera } from "@medusajs/icons"
 import Image from "next/image"
 
 const SocialFeed = () => {
@@ -27,7 +27,7 @@ const SocialFeed = () => {
                             Follow us for a daily dose of premium living. Experience the evolution of Artisan Fusion across our digital galleries.
                         </Text>
                         <div className="flex items-center gap-x-6">
-                             <Face className="text-gold-500 scale-150" />
+                             <Camera className="text-gold-500 scale-150" />
                              <span className="text-white font-sans tracking-[0.3em] font-black text-xs">@TASKSTOREINDIA</span>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ const SocialFeed = () => {
                             className="object-cover transition-transform duration-[2s] group-hover:scale-125"
                         />
                         <div className="absolute top-10 right-10 z-20">
-                             <Face className="text-white/50 group-hover:text-gold-500 transition-colors" />
+                             <Camera className="text-white/50 group-hover:text-gold-500 transition-colors" />
                         </div>
                     </div>
 

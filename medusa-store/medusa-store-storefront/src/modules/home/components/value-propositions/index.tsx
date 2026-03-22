@@ -1,19 +1,19 @@
 import { Heading, Text } from "@medusajs/ui"
-import { Truck, Key, ArrowPath } from "@medusajs/icons"
+import { TruckFast, Key, ArrowPath } from "@medusajs/icons"
 
 const propositions = [
     {
-        icon: <Truck className="text-gold-500" size={32} />,
+        icon: <TruckFast className="text-gold-500 w-8 h-8" />,
         title: "Global Logistic Elite",
         description: "Experience white-glove delivery, from the dunes of Dubai to the heart of Delhi. Insured, tracked, and handled with reverence."
     },
     {
-        icon: <Key className="text-gold-500" size={32} />,
+        icon: <Key className="text-gold-500 w-8 h-8" />,
         title: "Artisan Provenance",
         description: "Every piece comes with a digital certificate of authenticity, detailing the heritage and the hands that crafted it."
     },
     {
-        icon: <ArrowPath className="text-gold-500" size={32} />,
+        icon: <ArrowPath className="text-gold-500 w-8 h-8" />,
         title: "Bespoke Exchange",
         description: "Our commitment to your satisfaction is as absolute as our commitment to quality. Hassle-free curation management."
     }
