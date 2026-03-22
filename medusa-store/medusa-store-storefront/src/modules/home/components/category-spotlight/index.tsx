@@ -28,9 +28,9 @@ const categories = [
 
 const CategorySpotlight = () => {
     return (
-        <div className="py-32 small:py-48 bg-sand-50">
+        <div className="py-16 small:py-24 bg-sand-50">
             <div className="content-container">
-                <div className="flex flex-col gap-y-4 mb-24 max-w-[700px]">
+                <div className="flex flex-col gap-y-4 mb-12 max-w-[700px]">
                     <div className="flex items-center gap-x-4">
                         <div className="h-[2px] w-12 bg-gold-500" />
                         <span className="text-gold-500 uppercase tracking-[0.5em] text-[10px] font-black">Curated Edits</span>

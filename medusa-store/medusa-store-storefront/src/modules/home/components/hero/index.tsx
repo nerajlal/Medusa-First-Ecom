@@ -28,25 +28,25 @@ const Hero = () => {
             </div>
 
             {/* Content Side - Massive Typography */}
-            <div className="relative z-10 w-full content-container h-full flex items-center justify-end">
-                <div className="max-w-[800px] small:text-right flex flex-col small:items-end gap-y-16">
-                    <div className="flex flex-col gap-y-8">
+            <div className="relative z-10 w-full content-container flex items-center justify-end py-20 small:py-32">
+                <div className="max-w-[800px] small:text-right flex flex-col small:items-end gap-y-12 small:gap-y-16">
+                    <div className="flex flex-col gap-y-6 small:gap-y-8">
                         <div className="flex items-center gap-x-6 small:justify-end">
                             <span className="text-gold-500 font-sans tracking-[0.5em] uppercase text-sm font-black animate-in fade-in slide-in-from-right-4 duration-700">Artisan Fusion • Global Luxury</span>
-                            <div className="h-[2px] w-20 bg-gold-500" />
+                            <div className="h-[2px] w-16 bg-gold-500" />
                         </div>
-                        <Heading level="h1" className="text-6xl small:text-[140px] font-serif text-white leading-[0.85] tracking-tighter animate-in fade-in slide-in-from-right-8 duration-1000 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                        <Heading level="h1" className="text-5xl small:text-[110px] font-serif text-white leading-[0.9] tracking-tighter animate-in fade-in slide-in-from-right-8 duration-1000 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                             Where <span className="text-gold-500 italic block small:inline">Heritage</span> <br /> Meets <span className="underline decoration-gold-500/20 underline-offset-12">The Future.</span>
                         </Heading>
                     </div>
                     
-                    <Text className="text-xl small:text-3xl text-sand-100/90 max-w-[650px] leading-relaxed font-sans font-light animate-in fade-in slide-in-from-right-4 duration-1000 delay-300">
+                    <Text className="text-lg small:text-2xl text-sand-100/90 max-w-[650px] leading-relaxed font-sans font-light animate-in fade-in slide-in-from-right-4 duration-1000 delay-300">
                         Bridging the soul of Indian craftsmanship with the architectural brilliance of the UAE. Experience the pinnacle of global luxury.
                     </Text>
 
                     <div className="flex flex-col small:flex-row gap-8 animate-in fade-in slide-in-from-right-4 duration-1000 delay-500">
                         <LocalizedClientLink href="/store">
-                            <Button size="large" className="rounded-none bg-gold-500 text-obsidian-900 hover:bg-gold-600 border-none px-20 h-20 uppercase tracking-[0.4em] font-black text-sm shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all hover:scale-110 active:scale-95">
+                            <Button size="large" className="rounded-none bg-gold-500 text-obsidian-900 hover:bg-gold-600 border-none px-12 small:px-16 h-16 small:h-20 uppercase tracking-[0.4em] font-black text-xs small:text-sm shadow-[0_0_60px_rgba(212,175,55,0.4)] transition-all hover:scale-110 active:scale-95">
                                 Explore the Elite
                             </Button>
                         </LocalizedClientLink>
@@ -55,9 +55,9 @@ const Hero = () => {
             </div>
 
             {/* Aesthetic Bottom Indicator */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-6 animate-bounce opacity-40">
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-6 opacity-40">
                 <span className="text-[10px] uppercase tracking-[1.5em] text-white font-black rotate-90 mb-6 whitespace-nowrap">scroll • discover</span>
-                <div className="h-24 w-[2px] bg-gradient-to-b from-gold-500 via-gold-500/50 to-transparent" />
+                <div className="h-16 w-[2px] bg-gradient-to-b from-gold-500 via-gold-500/50 to-transparent" />
             </div>
 
             {/* Decorative Heritage Motif */}

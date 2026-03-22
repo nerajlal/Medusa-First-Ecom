@@ -14,7 +14,7 @@ export default function NewArrivals({
   }
 
   return (
-    <div className="py-32 small:py-56 bg-sand-50 relative overflow-hidden">
+    <div className="py-16 small:py-24 bg-sand-50 relative overflow-hidden">
         {/* Large Editorial Background Text */}
         <div className="absolute top-20 left-0 w-full flex justify-center pointer-events-none select-none overflow-hidden">
             <span className="text-[150px] small:text-[300px] font-serif font-black text-obsidian-900/[0.03] uppercase leading-none">
@@ -24,7 +24,7 @@ export default function NewArrivals({
 
         <div className="content-container relative z-10">
             {/* Header Section */}
-            <div className="flex flex-col small:flex-row small:items-end justify-between mb-32 gap-y-12">
+            <div className="flex flex-col small:flex-row small:items-end justify-between mb-16 gap-y-12">
                 <div className="flex flex-col gap-y-6 max-w-[650px]">
                     <div className="flex items-center gap-x-4">
                         <div className="h-[2px] w-16 bg-gold-500" />
@@ -87,7 +87,7 @@ export default function NewArrivals({
             </div>
             
             {/* Bottom CTA Area */}
-            <div className="mt-48 flex flex-col items-center">
+            <div className="mt-24 flex flex-col items-center">
                 <div className="w-px h-32 bg-gradient-to-b from-gold-500 to-transparent mb-12" />
                 <Heading level="h3" className="text-2xl font-serif italic text-obsidian-900 mb-8">
                     Discover the full curation.

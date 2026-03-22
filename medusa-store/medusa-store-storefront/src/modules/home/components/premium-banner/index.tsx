@@ -4,17 +4,17 @@ import Image from "next/image"
 
 const PremiumBanner = () => {
     return (
-        <div className="relative w-full h-[600px] overflow-hidden bg-obsidian-900 flex items-center">
+        <div className="relative w-full min-h-[500px] small:h-[600px] overflow-hidden bg-obsidian-900 flex items-center">
             {/* Background Image with Mask */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/homepage/artisan_bg.png"
                     alt="Artisan Background"
                     fill
-                    className="object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
+                    className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
                     unoptimized={true}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-obsidian-900 via-obsidian-900/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-obsidian-900 via-obsidian-900/40 to-transparent z-10" />
             </div>
 
             <div className="content-container relative z-10">

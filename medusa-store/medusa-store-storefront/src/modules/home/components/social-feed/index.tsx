@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const SocialFeed = () => {
     return (
-        <div className="bg-obsidian-900 py-32 small:py-64 overflow-hidden relative">
+        <div className="bg-obsidian-900 py-16 small:py-32 overflow-hidden relative">
             {/* Ambient Lighting Accents */}
             <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gold-500/10 blur-[150px] rounded-full -translate-y-1/2" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-brass-500/5 blur-[120px] rounded-full translate-y-1/2" />

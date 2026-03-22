@@ -32,8 +32,8 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         "relative w-full overflow-hidden p-0 bg-ui-bg-subtle border border-transparent group-hover:border-black/5 transition-all ease-in-out duration-300 rounded-none",
         className,
         {
-          "aspect-[11/14]": isFeatured,
-          "aspect-[9/16]": !isFeatured && size !== "square",
+          "aspect-[4/5]": isFeatured,
+          "aspect-[3/4]": !isFeatured && size !== "square",
           "aspect-[1/1]": size === "square",
           "w-[180px]": size === "small",
           "w-[290px]": size === "medium",
