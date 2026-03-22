@@ -24,11 +24,11 @@ const SocialFeed = () => {
                     
                     <div className="flex flex-col gap-y-8 small:items-end">
                          <Text className="text-sand-100/60 max-w-[450px] small:text-right font-sans text-xl leading-relaxed font-light">
-                            Join a global collective of connoisseurs. Experience the daily evolution of Artisan Fusion across our digital galleries.
+                            Follow us for a daily dose of premium living. Experience the evolution of Artisan Fusion across our digital galleries.
                         </Text>
                         <div className="flex items-center gap-x-6">
                              <Instagram className="text-gold-500 scale-150" />
-                             <span className="text-white font-sans tracking-[0.3em] font-black text-xs">@ARTISANFUSION_ELITE</span>
+                             <span className="text-white font-sans tracking-[0.3em] font-black text-xs">@TASKSTOREINDIA</span>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,6 @@ const SocialFeed = () => {
                         Every piece tells a <span className="text-gold-500">Global Story</span>.
                     </Heading>
                     <div className="flex gap-x-12 opacity-30 hover:opacity-100 transition-opacity duration-700 grayscale invert">
-                        {/* Placeholder for brand logos or partners if needed */}
                          <span className="text-[10px] uppercase tracking-[1em] text-white font-bold">Paris</span>
                          <span className="text-[10px] uppercase tracking-[1em] text-white font-bold">Dubai</span>
                          <span className="text-[10px] uppercase tracking-[1em] text-white font-bold">Mumbai</span>
