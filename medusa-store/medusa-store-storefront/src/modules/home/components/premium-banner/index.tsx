@@ -12,6 +12,7 @@ const PremiumBanner = () => {
                     alt="Artisan Background"
                     fill
                     className="object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
+                    unoptimized={true}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-obsidian-900 via-obsidian-900/60 to-transparent" />
             </div>

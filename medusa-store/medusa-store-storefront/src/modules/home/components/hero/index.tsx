@@ -13,6 +13,7 @@ const Hero = () => {
                     fill
                     className="object-cover scale-105"
                     priority
+                    unoptimized={true}
                 />
                 {/* Dramatic cinematic Overlays */}
                 <div className="absolute inset-0 bg-black/30" />
@@ -34,7 +35,7 @@ const Hero = () => {
                             <span className="text-gold-500 font-sans tracking-[0.5em] uppercase text-sm font-black animate-in fade-in slide-in-from-right-4 duration-700">Artisan Fusion • Global Luxury</span>
                             <div className="h-[2px] w-20 bg-gold-500" />
                         </div>
-                        <Heading level="h1" className="text-6xl small:text-[140px] font-serif text-white leading-[0.85] tracking-tighter animate-in fade-in slide-in-from-right-8 duration-1000">
+                        <Heading level="h1" className="text-6xl small:text-[140px] font-serif text-white leading-[0.85] tracking-tighter animate-in fade-in slide-in-from-right-8 duration-1000 drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                             Where <span className="text-gold-500 italic block small:inline">Heritage</span> <br /> Meets <span className="underline decoration-gold-500/20 underline-offset-12">The Future.</span>
                         </Heading>
                     </div>

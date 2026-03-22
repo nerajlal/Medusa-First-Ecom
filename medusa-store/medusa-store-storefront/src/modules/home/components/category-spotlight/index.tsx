@@ -6,21 +6,21 @@ const categories = [
     {
         title: "Women's Fusion",
         handle: "women",
-        image: "/images/homepage/women_fusion.png",
+        image: "/images/homepage/women.png",
         description: "Elegant silhouettes blending traditional drapes with modern cuts.",
         size: "large"
     },
     {
         title: "Men's Heritage",
         handle: "men",
-        image: "/images/homepage/men_fusion.png",
+        image: "/images/homepage/men.png",
         description: "Bespoke tailoring meeting artisanal heritage.",
         size: "medium"
     },
     {
         title: "Artisan Accents",
         handle: "accessories",
-        image: "/images/homepage/accessories_luxe.png",
+        image: "/images/homepage/luxury_social_3_jewelry.png",
         description: "Handcrafted accessories from the heart of local ateliers.",
         size: "medium"
     }
@@ -50,6 +50,7 @@ const CategorySpotlight = () => {
                                     alt={categories[0].title}
                                     fill
                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                    unoptimized={true}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900/80 via-transparent to-transparent opacity-60" />
                                 <div className="absolute bottom-10 left-10 text-white max-w-[300px]">
@@ -72,6 +73,7 @@ const CategorySpotlight = () => {
                                             alt={category.title}
                                             fill
                                             className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                                            unoptimized={true}
                                         />
                                         {/* Corner Accent */}
                                         <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-gold-500/0 group-hover:border-gold-500/50 transition-all duration-700" />

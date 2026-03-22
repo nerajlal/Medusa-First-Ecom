@@ -91,13 +91,16 @@ export default async function Footer() {
               <ul className="grid grid-cols-1 gap-y-3 text-ui-fg-subtle">
                 <li>
                   <LocalizedClientLink href="/about" className="hover:text-ui-fg-base transition-colors">
-                    About Us
+                    Our Heritage
                   </LocalizedClientLink>
                 </li>
                 <li>
                   <LocalizedClientLink href="/contact" className="hover:text-ui-fg-base transition-colors">
-                    Contact
+                    Global Concierge
                   </LocalizedClientLink>
+                </li>
+                <li>
+                   <a href="#" className="hover:text-ui-fg-base transition-colors">Digital Gallery</a>
                 </li>
               </ul>
             </div>

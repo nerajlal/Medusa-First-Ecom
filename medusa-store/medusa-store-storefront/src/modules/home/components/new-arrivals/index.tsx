@@ -47,7 +47,7 @@ export default function NewArrivals({
             </div>
 
             {/* Editorial Grid Layout */}
-            <div className="grid grid-cols-1 small:grid-cols-12 gap-y-24 small:gap-x-12 items-stretch">
+            <div className="grid grid-cols-1 small:grid-cols-12 gap-y-32 small:gap-x-12 items-stretch">
                 {products.slice(0, 4).map((product, index) => (
                     <div 
                         key={product.id} 
@@ -60,21 +60,23 @@ export default function NewArrivals({
                         `}
                     >
                         <div className={`
-                            relative h-full flex flex-col
-                            ${index === 0 || index === 3 ? "border-l border-gold-500/10 pl-8 small:pl-16 ml-4 small:ml-0" : ""}
+                            relative h-full flex flex-col gap-y-6
+                            ${(index === 0 || index === 3) ? "border-l border-gold-500/10 pl-6 small:pl-16 ml-2 small:ml-0" : "px-4 small:px-0"}
                         `}>
                             {/* Number Indicator */}
-                            <div className="absolute -left-4 small:-left-8 top-0 text-gold-500 font-serif italic text-4xl opacity-20">
+                            <div className="absolute -left-4 small:-left-8 top-0 text-gold-500 font-serif italic text-3xl small:text-4xl opacity-20 z-0">
                                 0{index + 1}
                             </div>
                             
-                            <ProductPreview product={product} region={region} isFeatured />
+                            <div className="relative z-10 flex-grow">
+                                <ProductPreview product={product} region={region} isFeatured />
+                            </div>
                             
                             {/* Editorial Note for large items */}
                             {(index === 0 || index === 3) && (
-                                <div className="mt-8 pt-8 border-t border-gold-500/10 max-w-[300px]">
-                                    <Text className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-2">Artisan Highlight</Text>
-                                    <Text className="text-sm text-obsidian-900/40 italic font-sans leading-relaxed">
+                                <div className="mt-4 pt-6 border-t border-gold-500/10 max-w-[300px]">
+                                    <Text className="text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">Artisan Highlight</Text>
+                                    <Text className="text-xs text-obsidian-900/40 italic font-sans leading-relaxed">
                                         This piece represents the absolute pinnacle of our current fusion collection, blending hand-woven textures with contemporary structure.
                                     </Text>
                                 </div>

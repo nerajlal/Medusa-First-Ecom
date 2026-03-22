@@ -43,6 +43,7 @@ const SocialFeed = () => {
                             alt="High Fashion Fusion"
                             fill
                             className="object-cover transition-transform duration-[2s] group-hover:scale-110"
+                            unoptimized={true}
                         />
                         <div className="absolute bottom-10 left-10 z-20">
                              <span className="text-gold-500 font-sans tracking-[0.4em] text-[10px] font-black uppercase mb-2 block">Couture Edit</span>
@@ -58,6 +59,7 @@ const SocialFeed = () => {
                             alt="Handcrafted Jewelry"
                             fill
                             className="object-cover transition-transform duration-[2s] group-hover:scale-125"
+                            unoptimized={true}
                         />
                         <div className="absolute top-10 right-10 z-20">
                              <Camera className="text-white/50 group-hover:text-gold-500 transition-colors" />
@@ -72,6 +74,7 @@ const SocialFeed = () => {
                             alt="Luxury Interior"
                             fill
                             className="object-cover transition-transform duration-[2s] group-hover:scale-110"
+                            unoptimized={true}
                         />
                     </div>
 
@@ -83,6 +86,7 @@ const SocialFeed = () => {
                             alt="Boutique Presence"
                             fill
                             className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                            unoptimized={true}
                         />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 opacity-0 group-hover:opacity-100 transition-all duration-700">
                              <div className="px-8 py-4 bg-obsidian-900/80 backdrop-blur-md border border-gold-500/50">
