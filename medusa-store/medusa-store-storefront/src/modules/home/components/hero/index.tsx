@@ -61,8 +61,8 @@ const Hero = () => {
             </div>
 
             {/* Decorative Heritage Motif */}
-            <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 z-10 opacity-5 pointer-events-none hidden small:block group">
-                 <svg width="800" height="800" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-spin-slow">
+            <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 z-10 opacity-10 pointer-events-none hidden small:block perspective-2000">
+                 <svg width="600" height="600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-spin-slow preserve-3d [transform:rotateX(45deg)_rotateY(10deg)_rotateZ(0deg)]">
                     <path d="M50 0L53.0612 40.9388L93.1818 25L59.0612 50L93.1818 75L53.0612 59.0612L50 100L46.9388 59.0612L6.81818 75L40.9388 50L6.81818 25L46.9388 40.9388L50 0Z" fill="url(#hero_gold_grad)" />
                     <defs>
                         <linearGradient id="hero_gold_grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">

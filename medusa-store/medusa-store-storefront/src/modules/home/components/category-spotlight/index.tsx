@@ -45,12 +45,12 @@ const CategorySpotlight = () => {
                     <Text className="text-obsidian-900/40 font-sans tracking-[0.2em] text-xs uppercase font-medium">Curated Excellence for the Modern Connoisseur</Text>
                 </div>
 
-                <div className="grid grid-cols-1 small:grid-cols-3 gap-8 small:gap-12">
+                <div className="grid grid-cols-1 small:grid-cols-3 gap-8 small:gap-12 perspective-1000">
                     {categories.map((category, index) => (
-                        <LocalizedClientLink key={category.handle} href={`/collections/${category.handle}`} className="group">
-                            <div className="relative flex flex-col gap-y-8">
+                        <LocalizedClientLink key={category.handle} href={`/collections/${category.handle}`} className="group preserve-3d">
+                            <div className="relative flex flex-col gap-y-8 transition-transform duration-700 group-hover:[transform:rotateX(5deg)_rotateY(-5deg)_translateZ(20px)]">
                                 {/* Number Label */}
-                                <div className="absolute -top-4 -left-4 z-20 w-12 h-12 bg-obsidian-900 text-gold-500 flex items-center justify-center font-serif italic text-xl border border-gold-500/30">
+                                <div className="absolute -top-4 -left-4 z-20 w-12 h-12 bg-obsidian-900 text-gold-500 flex items-center justify-center font-serif italic text-xl border border-gold-500/30 animate-float shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                                    0{index + 1}
                                 </div>
 

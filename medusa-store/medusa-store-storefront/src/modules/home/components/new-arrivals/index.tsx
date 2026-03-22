@@ -39,12 +39,12 @@ export default function NewArrivals({
             </div>
 
             {/* Tight Symmetric 4-Column Grid */}
-            <div className="grid grid-cols-2 small:grid-cols-4 gap-x-6 small:gap-x-10 gap-y-16">
+            <div className="grid grid-cols-2 small:grid-cols-4 gap-x-6 small:gap-x-10 gap-y-16 perspective-2000">
                 {products.slice(0, 4).map((product, index) => (
                     <div 
                         key={product.id} 
                         className={`
-                            group relative
+                            group relative preserve-3d
                             animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-${index * 150}
                         `}
                     >
@@ -53,7 +53,7 @@ export default function NewArrivals({
                             COLLECTION ITEM NO. 0{index + 1}
                         </div>
 
-                        <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-2">
+                        <div className="relative z-10 transition-all duration-700 group-hover:-translate-y-4 group-hover:[transform:translateZ(40px)_rotateY(10deg)]">
                             <ProductPreview product={product} region={region} isFeatured={false} />
                             
                             {/* Technical Specs Accent */}
