@@ -1,70 +1,78 @@
-import { Button, Heading, Text } from "@medusajs/ui"
+import { Heading, Text, Button } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
 const Hero = () => {
-  return (
-    <div className="h-[90vh] w-full border-b border-ui-border-base relative overflow-hidden bg-white">
-      <div className="flex h-full w-full flex-col small:flex-row">
-        {/* Left Side: Cinematic Image (60%) */}
-        <div className="relative w-full small:w-[60%] h-[50%] small:h-full overflow-hidden">
-          <Image
-            src="/images/homepage/hero_bg.png"
-            alt="Task Store Luxury Interior"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/10" />
-          
-          {/* Decorative Floating Badge */}
-          <div className="absolute bottom-12 right-12 bg-white/90 backdrop-blur-md p-6 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-            <span className="text-gold-500 font-serif italic text-lg block mb-1">Established 2026</span>
-            <span className="text-obsidian-900 font-sans tracking-[0.2em] uppercase text-xs font-bold">The Artisan Fusion</span>
-          </div>
-        </div>
-
-        {/* Right Side: Elite Typography (40%) */}
-        <div className="w-full small:w-[40%] h-[50%] small:h-full flex flex-col justify-center p-8 small:p-16 gap-y-10 bg-[#FAF9F6]">
-          <div className="flex flex-col gap-y-4">
-            <div className="flex items-center gap-x-3 mb-2 animate-in fade-in slide-in-from-right-4 duration-700">
-              <div className="h-[1px] w-12 bg-gold-500" />
-              <span className="text-gold-500 uppercase tracking-[0.3em] text-[10px] font-bold">India & UAE</span>
+    return (
+        <div className="relative w-full h-[100dvh] min-h-[750px] overflow-hidden bg-obsidian-900 flex flex-col justify-center">
+            {/* Visual Side (65% width on large screens) */}
+            <div className="absolute inset-0 w-full small:w-[65%] h-full z-0 overflow-hidden">
+                <Image
+                    src="/images/homepage/hero_bg.png"
+                    alt="Artisan Showcase"
+                    fill
+                    className="object-cover scale-105"
+                    priority
+                />
+                {/* Dramatic Overlays */}
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-obsidian-900" />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900/80 via-transparent to-transparent" />
+                
+                {/* luxury Badge */}
+                <div className="absolute bottom-12 left-12 z-20 hidden small:flex flex-col gap-y-2 border-l-2 border-gold-500 pl-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+                    <span className="text-gold-500 font-sans tracking-[0.5em] uppercase text-[10px] font-black">Established</span>
+                    <span className="text-white font-serif text-4xl italic">2026</span>
+                </div>
             </div>
-            
-            <Heading
-              level="h1"
-              className="text-4xl small:text-6xl font-serif text-obsidian-900 leading-[1.1] animate-in fade-in slide-in-from-right-4 duration-1000"
-            >
-              A Confluence of <br /> 
-              <span className="italic text-gold-600">Pure Luxury.</span>
-            </Heading>
-          </div>
 
-          <Text
-            className="text-base small:text-lg leading-relaxed text-ui-fg-subtle max-w-[450px] font-sans animate-in fade-in slide-in-from-right-4 duration-1000 delay-300"
-          >
-            Experience the harmony of Indian heritage and Emirati grandeur. Our curated collections redefine global living with a focus on unmatched craftsmanship.
-          </Text>
+            {/* Content Side */}
+            <div className="relative z-10 w-full content-container h-full flex items-center justify-end">
+                <div className="max-w-[650px] small:text-right flex flex-col small:items-end gap-y-12">
+                    <div className="flex flex-col gap-y-6">
+                        <div className="flex items-center gap-x-4 small:justify-end">
+                            <span className="text-gold-500 font-sans tracking-[0.4em] uppercase text-xs font-black animate-in fade-in slide-in-from-right-4 duration-700">Artisan Fusion Series</span>
+                            <div className="h-px w-12 bg-gold-500" />
+                        </div>
+                        <Heading level="h1" className="text-5xl small:text-[100px] font-serif text-white leading-[0.95] animate-in fade-in slide-in-from-right-4 duration-1000">
+                            Where <span className="text-gold-500 italic block small:inline">Heritage</span> <br /> Meets <span className="underline decoration-gold-500/30 underline-offset-8">Elite</span>.
+                        </Heading>
+                    </div>
+                    
+                    <Text className="text-lg small:text-2xl text-sand-100/90 max-w-[500px] leading-relaxed font-sans font-light animate-in fade-in slide-in-from-right-4 duration-1000 delay-300">
+                        Bridging the artisanal soul of India with the architectural majesty of the UAE. Experience the confluence of pure luxury.
+                    </Text>
 
-          <LocalizedClientLink href="/store" className="animate-in fade-in slide-in-from-right-4 duration-1000 delay-500">
-            <Button variant="secondary" size="large" className="rounded-none bg-obsidian-900 text-gold-500 hover:bg-black border-none px-10 h-14 uppercase tracking-widest font-bold text-xs transition-all shadow-xl group">
-              Explore the Fusion
-              <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-            </Button>
-          </LocalizedClientLink>
+                    <div className="flex flex-col small:flex-row gap-6 animate-in fade-in slide-in-from-right-4 duration-1000 delay-500">
+                        <LocalizedClientLink href="/store">
+                            <Button size="large" className="rounded-none bg-gold-500 text-obsidian-900 hover:bg-gold-600 border-none px-16 h-18 uppercase tracking-[0.3em] font-black text-xs shadow-[0_0_50px_rgba(212,175,55,0.3)] transition-all hover:scale-105 active:scale-95">
+                                Explore the Fusion
+                            </Button>
+                        </LocalizedClientLink>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-4 animate-bounce opacity-50">
+                <span className="text-[10px] uppercase tracking-[1em] text-white font-bold rotate-90 mb-4 whitespace-nowrap">Scroll</span>
+                <div className="h-16 w-px bg-gradient-to-b from-gold-500 to-transparent" />
+            </div>
+
+            {/* Subtle Motif */}
+            <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 z-10 opacity-10 pointer-events-none hidden small:block">
+                 <svg width="600" height="600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0L53.0612 40.9388L93.1818 25L59.0612 50L93.1818 75L53.0612 59.0612L50 100L46.9388 59.0612L6.81818 75L40.9388 50L6.81818 25L46.9388 40.9388L50 0Z" fill="url(#gold_grad)" />
+                    <defs>
+                        <linearGradient id="gold_grad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                            <stop stopColor="#D4AF37" />
+                            <stop offset="1" stopColor="#5D4B0A" />
+                        </linearGradient>
+                    </defs>
+                 </svg>
+            </div>
         </div>
-      </div>
-
-      {/* Subtle Cultural SVG Motif (Lotus/Geometric) */}
-      <div className="absolute top-1/2 left-[60%] -translate-x-1/2 -translate-y-1/2 z-20 hidden small:block opacity-20 pointer-events-none">
-        <svg width="400" height="400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="48" stroke="#D4AF37" strokeWidth="0.5" />
-            <path d="M50 2L55 45L98 50L55 55L50 98L45 55L2 50L45 45L50 2Z" stroke="#D4AF37" strokeWidth="0.5" />
-        </svg>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Hero

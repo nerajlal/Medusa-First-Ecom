@@ -51,12 +51,11 @@
 
 @layer base {
   body {
-    @apply font-sans;
-    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    @apply font-sans bg-sand-50 text-obsidian-900;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply uppercase tracking-tight;
+    @apply font-serif normal-case tracking-normal;
   }
 }
 
