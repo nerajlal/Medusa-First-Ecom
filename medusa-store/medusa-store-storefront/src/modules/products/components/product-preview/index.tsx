@@ -30,18 +30,22 @@ export default async function ProductPreview({
 
   return (
     <LocalizedClientLink href={`/products/${product.handle}`} className="group">
-      <div data-testid="product-wrapper">
-        <Thumbnail
-          thumbnail={product.thumbnail}
-          images={product.images}
-          size="full"
-          isFeatured={isFeatured}
-        />
-        <div className="flex flex-col mt-6 gap-y-1">
-          <Text className="text-xs uppercase tracking-widest text-ui-fg-muted font-bold" data-testid="product-title">
+      <div data-testid="product-wrapper" className="flex flex-col gap-y-4">
+        <div className="relative overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+           <Thumbnail
+            thumbnail={product.thumbnail}
+            images={product.images}
+            size="full"
+            isFeatured={isFeatured}
+          />
+          {/* Gold Underline Effect on Hover */}
+          <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gold-500 group-hover:w-full transition-all duration-700" />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Text className="text-lg font-serif italic text-obsidian-900 group-hover:text-gold-600 transition-colors" data-testid="product-title">
             {product.title}
           </Text>
-          <div className="flex items-center">
+          <div className="flex items-center text-gold-500 font-sans font-bold">
             {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
           </div>
         </div>

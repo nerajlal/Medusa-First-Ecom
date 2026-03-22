@@ -1,68 +1,101 @@
-import { listProducts } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
-import { Text, Heading, clx } from "@medusajs/ui"
+import { Heading, Text } from "@medusajs/ui"
 import ProductPreview from "@modules/products/components/product-preview"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-export default async function NewArrivals({
-    region,
+export default function NewArrivals({
+  products,
+  region,
 }: {
-    region: HttpTypes.StoreRegion
+  products: HttpTypes.StoreProduct[]
+  region: HttpTypes.StoreRegion
 }) {
-    const {
-        response: { products },
-    } = await listProducts({
-        regionId: region.id,
-        queryParams: {
-            limit: 4,
-            order: "-created_at",
-        },
-    })
+  if (!products || products.length === 0) {
+    return null
+  }
 
-    if (!products || products.length === 0) {
-        return null
-    }
+  return (
+    <div className="py-32 small:py-56 bg-sand-50 relative overflow-hidden">
+        {/* Large Editorial Background Text */}
+        <div className="absolute top-20 left-0 w-full flex justify-center pointer-events-none select-none overflow-hidden">
+            <span className="text-[150px] small:text-[300px] font-serif font-black text-obsidian-900/[0.03] uppercase leading-none">
+                Curation
+            </span>
+        </div>
 
-    return (
-        <div className="bg-neutral-50 py-24 small:py-40">
-            <div className="content-container flex flex-col items-start mb-20 gap-y-6">
-                <div className="flex items-center gap-x-3">
-                    <div className="h-[1px] w-8 bg-gold-500" />
-                    <span className="text-gold-500 uppercase tracking-widest text-[10px] font-bold">Latest Discoveries</span>
+        <div className="content-container relative z-10">
+            {/* Header Section */}
+            <div className="flex flex-col small:flex-row small:items-end justify-between mb-32 gap-y-12">
+                <div className="flex flex-col gap-y-6 max-w-[650px]">
+                    <div className="flex items-center gap-x-4">
+                        <div className="h-[2px] w-16 bg-gold-500" />
+                        <span className="text-gold-500 uppercase tracking-[0.6em] text-[10px] font-black">Summer/Spring 2026</span>
+                    </div>
+                    <Heading level="h2" className="text-5xl small:text-8xl font-serif text-obsidian-900 leading-[0.9] tracking-tight">
+                        The <span className="italic text-gold-600">Modern</span> <br /> Selection.
+                    </Heading>
                 </div>
-                <Heading level="h2" className="text-4xl small:text-6xl font-serif text-obsidian-900 leading-tight">
-                    New Arrivals. <br />
-                    <span className="italic text-gold-600">Pure Craftsmanship.</span>
-                </Heading>
-                <Text className="text-lg text-ui-fg-subtle max-w-[500px] font-sans">
-                    Explore our latest curation of premium essentials, where heritage meets modern functionality.
-                </Text>
+                
+                <div className="flex flex-col gap-y-6 small:items-end">
+                    <Text className="text-lg small:text-xl text-obsidian-900/60 max-w-[400px] small:text-right font-sans leading-relaxed">
+                        A definitive collection of essentials, meticulously crafted for the elite lifestyle. Heritage meets modern precision.
+                    </Text>
+                    <div className="flex items-center gap-x-4">
+                        <span className="text-[10px] uppercase tracking-widest font-black text-gold-500">Explore All</span>
+                        <div className="h-px w-24 bg-gold-500/30" />
+                    </div>
+                </div>
             </div>
 
-            <div className="content-container">
-                <ul className="grid grid-cols-1 small:grid-cols-4 gap-12">
-                    {products.map((product, index) => (
-                        <li
-                            key={product.id}
-                            className={clx("w-full transition-all duration-700", {
-                                "small:mt-16": index % 2 !== 0,
-                                "small:mb-16": index % 2 === 0,
-                            })}
-                        >
-                            <ProductPreview product={product} region={region} isFeatured />
-                        </li>
-                    ))}
-                </ul>
-
-                <div className="flex justify-center mt-20">
-                    <LocalizedClientLink
-                        href="/store"
-                        className="h-14 px-12 flex items-center justify-center border border-black uppercase tracking-[0.2em] font-bold text-sm hover:bg-black hover:text-white transition-all duration-300 rounded-none"
+            {/* Editorial Grid Layout */}
+            <div className="grid grid-cols-1 small:grid-cols-12 gap-y-24 small:gap-x-12 items-stretch">
+                {products.slice(0, 4).map((product, index) => (
+                    <div 
+                        key={product.id} 
+                        className={`
+                            ${index === 0 ? "small:col-span-8" : ""}
+                            ${index === 1 ? "small:col-span-4 small:pt-32" : ""}
+                            ${index === 2 ? "small:col-span-4" : ""}
+                            ${index === 3 ? "small:col-span-8 small:pt-32" : ""}
+                            animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-${index * 200}
+                        `}
                     >
-                        View Full Collection
-                    </LocalizedClientLink>
+                        <div className={`
+                            relative h-full flex flex-col
+                            ${index === 0 || index === 3 ? "border-l border-gold-500/10 pl-8 small:pl-16 ml-4 small:ml-0" : ""}
+                        `}>
+                            {/* Number Indicator */}
+                            <div className="absolute -left-4 small:-left-8 top-0 text-gold-500 font-serif italic text-4xl opacity-20">
+                                0{index + 1}
+                            </div>
+                            
+                            <ProductPreview product={product} region={region} isFeatured />
+                            
+                            {/* Editorial Note for large items */}
+                            {(index === 0 || index === 3) && (
+                                <div className="mt-8 pt-8 border-t border-gold-500/10 max-w-[300px]">
+                                    <Text className="text-xs uppercase tracking-widest text-gold-500 font-bold mb-2">Artisan Highlight</Text>
+                                    <Text className="text-sm text-obsidian-900/40 italic font-sans leading-relaxed">
+                                        This piece represents the absolute pinnacle of our current fusion collection, blending hand-woven textures with contemporary structure.
+                                    </Text>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            
+            {/* Bottom CTA Area */}
+            <div className="mt-48 flex flex-col items-center">
+                <div className="w-px h-32 bg-gradient-to-b from-gold-500 to-transparent mb-12" />
+                <Heading level="h3" className="text-2xl font-serif italic text-obsidian-900 mb-8">
+                    Discover the full curation.
+                </Heading>
+                <div className="group relative cursor-pointer">
+                    <span className="text-xs uppercase tracking-[0.5em] font-black text-obsidian-900 group-hover:text-gold-600 transition-colors">View All Products</span>
+                    <div className="absolute -bottom-2 left-0 w-8 h-[2px] bg-gold-500 group-hover:w-full transition-all duration-700" />
                 </div>
             </div>
         </div>
-    )
+    </div>
+  )
 }
