@@ -28,67 +28,64 @@ const categories = [
 
 const CategorySpotlight = () => {
     return (
-        <div className="py-16 small:py-24 bg-sand-50">
-            <div className="content-container">
-                <div className="flex flex-col gap-y-4 mb-12 max-w-[700px]">
-                    <div className="flex items-center gap-x-4">
-                        <div className="h-[2px] w-12 bg-gold-500" />
-                        <span className="text-gold-500 uppercase tracking-[0.5em] text-[10px] font-black">Curated Edits</span>
+        <div className="py-16 small:py-24 bg-white relative overflow-hidden">
+            {/* Background Decorative Accent */}
+            <div className="absolute top-0 right-1/4 h-full w-px bg-gold-500/10 hidden small:block" />
+            
+            <div className="content-container relative z-10">
+                <div className="flex flex-col items-center gap-y-4 mb-20 text-center">
+                    <div className="flex items-center gap-x-4 justify-center">
+                        <div className="h-[1px] w-8 bg-gold-500" />
+                        <span className="text-gold-500 uppercase tracking-[0.5em] text-[10px] font-black">Private Collection</span>
+                        <div className="h-[1px] w-8 bg-gold-500" />
                     </div>
-                    <Heading level="h2" className="text-5xl small:text-7xl font-serif text-obsidian-900 leading-[1.1]">
-                        Boutique <br /> <span className="italic text-gold-600">Spotlight.</span>
+                    <Heading level="h2" className="text-5xl small:text-8xl font-serif text-obsidian-900 leading-tight uppercase tracking-tighter">
+                        Boutique <span className="italic text-gold-600">Spotlight.</span>
                     </Heading>
+                    <Text className="text-obsidian-900/40 font-sans tracking-[0.2em] text-xs uppercase font-medium">Curated Excellence for the Modern Connoisseur</Text>
                 </div>
 
-                <div className="grid grid-cols-1 small:grid-cols-12 gap-y-16 small:gap-x-12 items-start">
-                    {/* Large Featured Category */}
-                    <div className="small:col-span-7 group">
-                        <LocalizedClientLink href={`/collections/${categories[0].handle}`}>
-                            <div className="relative aspect-[4/5] overflow-hidden bg-neutral-200 border-2 border-transparent transition-all duration-700 group-hover:border-gold-500 group-hover:scale-[0.98]">
-                                <Image
-                                    src={categories[0].image}
-                                    alt={categories[0].title}
-                                    fill
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                                    unoptimized={true}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900/80 via-transparent to-transparent opacity-60" />
-                                <div className="absolute bottom-10 left-10 text-white max-w-[300px]">
-                                    <Heading level="h3" className="text-3xl font-serif mb-4 italic">{categories[0].title}</Heading>
-                                    <Text className="text-sand-100/80 text-sm leading-relaxed mb-6 font-sans">{categories[0].description}</Text>
-                                    <div className="h-px w-12 bg-gold-500 group-hover:w-24 transition-all duration-700" />
+                <div className="grid grid-cols-1 small:grid-cols-3 gap-8 small:gap-12">
+                    {categories.map((category, index) => (
+                        <LocalizedClientLink key={category.handle} href={`/collections/${category.handle}`} className="group">
+                            <div className="relative flex flex-col gap-y-8">
+                                {/* Number Label */}
+                                <div className="absolute -top-4 -left-4 z-20 w-12 h-12 bg-obsidian-900 text-gold-500 flex items-center justify-center font-serif italic text-xl border border-gold-500/30">
+                                   0{index + 1}
+                                </div>
+
+                                <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100 border border-gold-500/10 transition-all duration-700 group-hover:scale-[0.98]">
+                                    <Image
+                                        src={category.image}
+                                        alt={category.title}
+                                        fill
+                                        className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
+                                        unoptimized={true}
+                                    />
+                                    {/* Glassmorphic Brand Tag */}
+                                    <div className="absolute top-6 right-6 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                                        <span className="text-[10px] text-white font-black uppercase tracking-widest">Heritage Edit</span>
+                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-900/90 via-obsidian-900/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                                    
+                                    <div className="absolute bottom-8 left-8 right-8 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                                        <Heading level="h3" className="text-3xl font-serif mb-2 italic tracking-tight">{category.title}</Heading>
+                                        <div className="h-px w-0 bg-gold-500 group-hover:w-full transition-all duration-700 delay-100" />
+                                    </div>
+                                </div>
+                                
+                                <div className="px-2">
+                                    <Text className="text-obsidian-900/60 text-sm leading-relaxed font-sans mb-4 min-h-[48px]">
+                                        {category.description}
+                                    </Text>
+                                    <div className="flex items-center gap-x-3 group/btn">
+                                        <span className="text-[10px] uppercase tracking-widest text-gold-600 font-bold group-hover/btn:tracking-[0.3em] transition-all duration-500">View Gallery</span>
+                                        <div className="h-[1px] w-6 bg-gold-500 group-hover/btn:w-12 transition-all duration-500" />
+                                    </div>
                                 </div>
                             </div>
                         </LocalizedClientLink>
-                    </div>
-
-                    {/* Secondary Categories Column */}
-                    <div className="small:col-span-5 flex flex-col gap-y-16 small:gap-y-32 small:pt-32">
-                        {categories.slice(1).map((category, index) => (
-                            <LocalizedClientLink key={category.handle} href={`/collections/${category.handle}`} className="group">
-                                <div className="space-y-6">
-                                    <div className="relative aspect-[3/4] overflow-hidden bg-neutral-200 border border-transparent transition-all duration-700 group-hover:border-gold-500">
-                                        <Image
-                                            src={category.image}
-                                            alt={category.title}
-                                            fill
-                                            className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                                            unoptimized={true}
-                                        />
-                                        {/* Corner Accent */}
-                                        <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-gold-500/0 group-hover:border-gold-500/50 transition-all duration-700" />
-                                    </div>
-                                    <div className="flex justify-between items-end border-b border-gold-500/20 pb-4">
-                                        <div>
-                                            <Heading level="h3" className="text-2xl font-serif italic text-obsidian-900 mb-1">{category.title}</Heading>
-                                            <span className="text-[10px] uppercase tracking-widest text-gold-500 font-bold">Discover More</span>
-                                        </div>
-                                        <span className="text-gold-500 group-hover:translate-x-2 transition-transform duration-500">→</span>
-                                    </div>
-                                </div>
-                            </LocalizedClientLink>
-                        ))}
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
