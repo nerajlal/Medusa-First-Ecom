@@ -4,44 +4,43 @@ import Image from "next/image"
 
 const PremiumBanner = () => {
     return (
-        <div className="relative h-[600px] bg-neutral-900 overflow-hidden flex items-center">
-            {/* Tactile Background Image */}
-            <Image
-                src="/images/homepage/artisan_bg.png"
-                alt="Artisan Texture Detail"
-                fill
-                className="object-cover opacity-40 shadow-inner"
-            />
+        <div className="relative w-full h-[600px] overflow-hidden bg-obsidian-900 flex items-center">
+            {/* Background Image with Mask */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/images/homepage/artisan_bg.png"
+                    alt="Artisan Background"
+                    fill
+                    className="object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-obsidian-900 via-obsidian-900/60 to-transparent" />
+            </div>
 
-            {/* Background visual effect over image */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-l from-black/80 via-black/20 to-transparent" />
-
-            <div className="relative z-10 content-container w-full grid grid-cols-1 medium:grid-cols-2">
-                <div className="medium:col-start-2 flex flex-col items-start gap-y-10 p-6">
+            <div className="content-container relative z-10">
+                <div className="max-w-[700px] flex flex-col items-start gap-y-10 border-l border-gold-500/30 pl-12 py-12">
                     <div className="flex flex-col gap-y-4">
-                        <span className="text-gold-500 uppercase tracking-[0.5em] text-xs font-bold opacity-90">
-                            Exclusively Global
-                        </span>
-                        <Heading level="h2" className="text-5xl medium:text-7xl font-bold text-white uppercase tracking-tighter leading-none italic">
-                            The Artisan <br /> Fusion.
+                        <span className="text-gold-500 font-sans tracking-[0.4em] uppercase text-xs font-bold opacity-80 animate-in fade-in slide-in-from-left-4 duration-700">Exclusively Global</span>
+                        <Heading level="h2" className="text-4xl small:text-7xl font-serif text-white leading-tight animate-in fade-in slide-in-from-left-4 duration-1000">
+                            The <span className="italic text-gold-500 underline decoration-gold-500/30 underline-offset-8">Artisan</span> Fusion.
                         </Heading>
-                        <div className="h-[2px] w-24 bg-gold-500/50 my-4" />
-                        <Text className="text-ui-fg-subtle text-lg medium:text-xl leading-relaxed max-w-[500px] font-medium">
-                            A confluence of traditional Indian craft and Emirati grandeur. Each piece tells a story of heritage reimagined for the global citizen.
-                        </Text>
                     </div>
+                    
+                    <Text className="text-lg small:text-xl text-white/70 max-w-[500px] leading-relaxed font-sans font-light animate-in fade-in slide-in-from-left-4 duration-1000 delay-300">
+                        A curated selection of the finest imports, blending traditional artistry with modern luxury standards. Discover the pinnacle of Indo-Arabian craftsmanship.
+                    </Text>
 
-                    <LocalizedClientLink href="/store">
-                        <Button variant="secondary" size="large" className="rounded-none bg-gold-500 text-black hover:bg-gold-600 border-none px-12 h-16 uppercase tracking-widest font-bold text-sm shadow-2xl transition-all">
+                    <LocalizedClientLink href="/collections/artisan" className="animate-in fade-in slide-in-from-left-4 duration-1000 delay-500">
+                        <Button variant="secondary" size="large" className="rounded-none bg-gold-500 text-obsidian-900 hover:bg-gold-600 border-none px-12 h-14 uppercase tracking-widest font-bold text-xs transition-all shadow-2xl">
                             Discover the Craft
                         </Button>
                     </LocalizedClientLink>
                 </div>
             </div>
 
-            {/* Decorative elements */}
-            <div className="absolute left-12 top-12 w-20 h-20 border-l border-t border-white/10" />
-            <div className="absolute right-12 bottom-12 w-20 h-20 border-r border-b border-white/10" />
+            {/* Side Accent SVG */}
+            <div className="absolute top-0 right-0 h-full w-24 bg-gold-500/5 backdrop-blur-sm border-l border-gold-500/10 flex items-center justify-center pointer-events-none">
+                <span className="rotate-90 text-[10px] uppercase tracking-[1em] text-gold-500/40 whitespace-nowrap font-bold">Premium Living • Global Heritage</span>
+            </div>
         </div>
     )
 }

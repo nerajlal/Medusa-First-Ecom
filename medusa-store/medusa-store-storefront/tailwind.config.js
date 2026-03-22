@@ -85,7 +85,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "var(--font-outfit)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -93,6 +93,10 @@ module.exports = {
           "Helvetica Neue",
           "Ubuntu",
           "sans-serif",
+        ],
+        serif: [
+          "var(--font-playfair)",
+          "serif",
         ],
       },
       keyframes: {

@@ -25,13 +25,17 @@ export default async function NewArrivals({
 
     return (
         <div className="bg-neutral-50 py-24 small:py-40">
-            <div className="content-container flex flex-col items-center text-center mb-20">
-                <Heading level="h2" className="text-4xl small:text-6xl font-bold uppercase tracking-tighter text-ui-fg-base mb-6">
-                    The Modern Selection.
+            <div className="content-container flex flex-col items-start mb-20 gap-y-6">
+                <div className="flex items-center gap-x-3">
+                    <div className="h-[1px] w-8 bg-gold-500" />
+                    <span className="text-gold-500 uppercase tracking-widest text-[10px] font-bold">Latest Discoveries</span>
+                </div>
+                <Heading level="h2" className="text-4xl small:text-6xl font-serif text-obsidian-900 leading-tight">
+                    New Arrivals. <br />
+                    <span className="italic text-gold-600">Pure Craftsmanship.</span>
                 </Heading>
-                <div className="h-px w-20 bg-black mb-6" />
-                <Text className="text-lg small:text-xl text-ui-fg-subtle max-w-[600px] font-normal leading-relaxed">
-                    Explore our latest curation of premium essentials, crafted with precision for the modern lifestyle.
+                <Text className="text-lg text-ui-fg-subtle max-w-[500px] font-sans">
+                    Explore our latest curation of premium essentials, where heritage meets modern functionality.
                 </Text>
             </div>
 
