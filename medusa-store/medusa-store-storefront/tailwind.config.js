@@ -21,6 +21,31 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        gold: {
+          100: "#FDFCF0",
+          200: "#F9F6D0",
+          300: "#F2EB9D",
+          400: "#EADE6A",
+          500: "#D4AF37", // Primary Gold
+          600: "#C5A021",
+          700: "#A68B1C",
+          800: "#846B12",
+          900: "#5D4B0A",
+        },
+        brass: {
+          500: "#B5A642",
+        },
+        sand: {
+          50: "#FAF9F6",
+          100: "#F5F5DC", // Beige
+          200: "#EEDC82", // Flax
+          300: "#D2B48C", // Tan
+          400: "#C2B280", // Sand
+          500: "#967117", // Deep Sand
+        },
+        obsidian: {
+          900: "#0B0B0B",
+        },
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",

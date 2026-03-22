@@ -19,20 +19,20 @@ const PremiumBanner = () => {
             <div className="relative z-10 content-container w-full grid grid-cols-1 medium:grid-cols-2">
                 <div className="medium:col-start-2 flex flex-col items-start gap-y-10 p-6">
                     <div className="flex flex-col gap-y-4">
-                        <span className="text-white uppercase tracking-[0.5em] text-xs font-bold opacity-60">
-                            Limited Edition
+                        <span className="text-gold-500 uppercase tracking-[0.5em] text-xs font-bold opacity-90">
+                            Exclusively Global
                         </span>
                         <Heading level="h2" className="text-5xl medium:text-7xl font-bold text-white uppercase tracking-tighter leading-none italic">
-                            The Artisan <br /> Series.
+                            The Artisan <br /> Fusion.
                         </Heading>
-                        <div className="h-[2px] w-24 bg-white/20 my-4" />
+                        <div className="h-[2px] w-24 bg-gold-500/50 my-4" />
                         <Text className="text-ui-fg-subtle text-lg medium:text-xl leading-relaxed max-w-[500px] font-medium">
-                            A confluence of traditional Indian craft and contemporary minimalist design. Each piece tells a story of heritage reimagined for the modern home.
+                            A confluence of traditional Indian craft and Emirati grandeur. Each piece tells a story of heritage reimagined for the global citizen.
                         </Text>
                     </div>
 
                     <LocalizedClientLink href="/store">
-                        <Button variant="secondary" size="large" className="rounded-none bg-white text-black hover:bg-neutral-100 border-none px-12 h-16 uppercase tracking-widest font-bold text-sm shadow-2xl transition-all">
+                        <Button variant="secondary" size="large" className="rounded-none bg-gold-500 text-black hover:bg-gold-600 border-none px-12 h-16 uppercase tracking-widest font-bold text-sm shadow-2xl transition-all">
                             Discover the Craft
                         </Button>
                     </LocalizedClientLink>

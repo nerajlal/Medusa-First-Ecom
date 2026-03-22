@@ -10,7 +10,7 @@ const SocialFeed = () => {
                         Follow the Journey
                     </Heading>
                     <Text className="text-ui-fg-subtle text-lg">
-                        @TaskStoreIndia — Follow us for a daily dose of premium living.
+                        <span className="text-gold-500 font-bold">@TaskStoreIndia</span> — Follow us for a daily dose of premium living.
                     </Text>
                 </div>
 

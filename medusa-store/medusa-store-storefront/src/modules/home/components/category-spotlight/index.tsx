@@ -4,22 +4,22 @@ import Image from "next/image"
 
 const categories = [
     {
-        title: "Women",
+        title: "Women's Fusion",
         handle: "women",
         image: "/images/homepage/women.png",
-        description: "Elegant silhouettes and contemporary drapes.",
+        description: "Elegant silhouettes blending Indian grace and Emirati grandeur.",
     },
     {
-        title: "Men",
+        title: "Men's Heritage",
         handle: "men",
         image: "/images/homepage/men.png",
-        description: "Modern minimalist essentials for the refined man.",
+        description: "Modern minimalist essentials for the refined global man.",
     },
     {
-        title: "Accessories",
+        title: "Luxe Accessories",
         handle: "accessories",
         image: "/images/homepage/accessories.png",
-        description: "Handcrafted details that define your look.",
+        description: "Handcrafted details from the finest Indian and Arabic artisans.",
     },
 ]
 
