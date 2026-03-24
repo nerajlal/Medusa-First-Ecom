@@ -172,15 +172,15 @@ export default function ProductActions({
             !isValidVariant
           }
           variant="primary"
-          className="w-full h-14 rounded-none uppercase tracking-widest font-bold text-sm bg-black text-white hover:bg-neutral-800 transition-all shadow-lg"
+          className="w-full h-14 rounded-full uppercase tracking-[0.2em] font-black text-xs bg-black text-white hover:bg-neutral-800 transition-all shadow-xl active:scale-[0.98] border-none"
           isLoading={isAdding}
           data-testid="add-product-button"
         >
           {!selectedVariant && !options
-            ? "Select Variant"
+            ? "Choose your edition"
             : !inStock || !isValidVariant
-              ? "Out of Stock"
-              : "Add to Cart"}
+              ? "Currently Unavailable"
+              : "Add to Bag"}
         </Button>
         <MobileActions
           product={product}

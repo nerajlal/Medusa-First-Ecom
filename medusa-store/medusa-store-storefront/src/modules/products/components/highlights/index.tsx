@@ -9,76 +9,104 @@ type ProductHighlightsProps = {
 }
 
 const ProductHighlights: React.FC<ProductHighlightsProps> = ({ product }) => {
-  // We can derive "highlights" from product metadata if available, 
-  // or use the description split by paragraphs for a clean look.
-  const descriptionParagraphs = product.description?.split("\n").filter(p => p.trim() !== "") || []
-
   return (
-    <div id="highlights" className="w-full flex flex-col gap-y-16 py-16">
-      {/* Hero Section of Highlights */}
-      <section className="bg-neutral-50 py-24 px-6 small:px-12 rounded-3xl overflow-hidden relative">
-        <div className="content-container flex flex-col items-center text-center max-w-4xl mx-auto">
-          <span className="text-ui-fg-interactive font-bold text-sm uppercase tracking-widest mb-4">Unparalleled Experience</span>
-          <h2 className="text-4xl small:text-6xl font-bold tracking-tight text-neutral-900 leading-tight">
-            Designed for those who <br /> demanding the absolute best.
+    <div id="highlights" className="w-full flex flex-col gap-y-0 overflow-hidden scroll-mt-20">
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out forwards; }
+        .animation-delay-200 { animation-delay: 200ms; }
+        .animation-delay-400 { animation-delay: 400ms; }
+      `}} />
+
+      {/* Hero Section: Full Bleed */}
+      <section className="relative w-full h-[70vh] small:h-[90vh] flex items-center justify-center bg-black overflow-hidden">
+        <Image
+          src="/highlights/hero.png"
+          alt="Product Hero"
+          fill
+          className="object-cover opacity-70 scale-105 hover:scale-100 transition-transform duration-[3s] ease-out"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl">
+          <span className="text-white/60 font-bold text-xs small:text-sm uppercase tracking-[0.4em] mb-6 animate-fade-in opacity-0">
+            Performance Redefined
+          </span>
+          <h2 className="text-white text-5xl small:text-8xl font-black tracking-tighter leading-[0.9] mb-8 animate-slide-up opacity-0">
+            {product.title}
           </h2>
-          <p className="mt-8 text-lg text-ui-fg-subtle leading-relaxed">
-            {product.subtitle || "Exploring the boundaries of craft and innovation. Every detail of " + product.title + " has been refined for a premium feel."}
+          <p className="text-white/70 text-lg small:text-2xl font-light max-w-2xl mx-auto leading-relaxed animate-slide-up opacity-0 animation-delay-200">
+            {product.subtitle || "Crafted for those who demand the absolute best in comfort and style."}
           </p>
         </div>
       </section>
 
-      {/* Feature Grids */}
-      <div className="content-container grid grid-cols-1 small:grid-cols-2 gap-8 px-6 small:px-12">
-        {descriptionParagraphs.map((para, i) => (
-          <section 
-            key={i} 
-            className="group bg-white border border-ui-border-base rounded-3xl p-10 flex flex-col justify-between hover:shadow-2xl hover:border-black transition-all duration-500 min-h-[400px] animate-fade-in-up"
-            style={{ animationDelay: `${i * 150}ms` }}
-          >
-            <div>
-              <div className="w-12 h-12 bg-neutral-100 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors">
-                <span className="font-bold text-lg">{i + 1}</span>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Core Feature {i + 1}</h3>
-              <p className="text-ui-fg-subtle text-base leading-relaxed">
-                {para}
-              </p>
-            </div>
-            <div className="mt-8 pt-8 border-t border-ui-border-base text-xs font-bold uppercase tracking-widest text-ui-fg-muted">
-              Discover More &rarr;
-            </div>
-          </section>
-        ))}
-      </div>
-
-      {/* Large Visual Section */}
-      <section className="w-full bg-black py-32 flex flex-col items-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-            {/* Background texture or subtle gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-transparent" />
-        </div>
-        <div className="content-container relative z-10 px-6 small:px-12 text-center text-white">
-          <h2 className="text-4xl small:text-5xl font-bold mb-8">Elegance meets performance.</h2>
-          <p className="max-w-2xl mx-auto text-neutral-400 text-lg">
-            Experience the fusion of high-end aesthetics and uncompromising quality with the {product.title}.
+      {/* Feature 1: Fabric Detail - Split Layout */}
+      <section className="grid grid-cols-1 small:grid-cols-2 w-full min-h-[70vh] bg-white border-y border-neutral-100">
+        <div className="flex flex-col justify-center p-12 small:p-32 order-2 small:order-1 items-start">
+          <span className="text-red-500 font-black text-xs uppercase tracking-widest mb-6">Material Science</span>
+          <h3 className="text-4xl small:text-6xl font-bold mb-8 text-black tracking-tight leading-tight">
+            Superior <br /> Breathability.
+          </h3>
+          <p className="text-neutral-500 text-lg small:text-xl leading-relaxed max-w-md font-light">
+            Our custom-engineered micro-mesh weave allows for maximum airflow, keeping you cool and dry even during the most intense workouts. Experience the science of effort.
           </p>
-          <div className="mt-16 flex justify-center gap-x-8">
-             <div className="flex flex-col items-center">
-                <span className="text-3xl font-bold mb-2">99%</span>
-                <span className="text-neutral-500 text-xs uppercase tracking-widest">Efficiency</span>
-             </div>
-             <div className="h-16 w-px bg-neutral-800" />
-             <div className="flex flex-col items-center">
-                <span className="text-3xl font-bold mb-2">Pro</span>
-                <span className="text-neutral-500 text-xs uppercase tracking-widest">Grade</span>
-             </div>
-             <div className="h-16 w-px bg-neutral-800" />
-             <div className="flex flex-col items-center">
-                <span className="text-3xl font-bold mb-2">&infin;</span>
-                <span className="text-neutral-500 text-xs uppercase tracking-widest">Durability</span>
-             </div>
-          </div>
+          <div className="mt-12 w-24 h-1 bg-black" />
+        </div>
+        <div className="relative min-h-[500px] small:min-h-full order-1 small:order-2 bg-neutral-50 overflow-hidden">
+          <Image
+            src="/highlights/fabric.png"
+            alt="Fabric Detail"
+            fill
+            className="object-cover transition-transform duration-1000 hover:scale-110"
+          />
+        </div>
+      </section>
+
+      {/* Feature 2: Lifestyle / Fit - High Contrast */}
+      <section className="relative w-full min-h-[90vh] bg-neutral-950 flex items-center justify-center overflow-hidden py-32">
+        <Image
+          src="/highlights/lifestyle.png"
+          alt="Lifestyle"
+          fill
+          className="object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000"
+        />
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-black to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black to-transparent" />
+        
+        <div className="relative z-10 content-container px-6 text-center text-white">
+            <h3 className="text-4xl small:text-7xl font-black mb-16 tracking-tighter">Movement without limits.</h3>
+            <div className="grid grid-cols-1 small:grid-cols-3 gap-y-16 small:gap-x-24 max-w-6xl mx-auto">
+                <div className="flex flex-col items-center group">
+                    <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-all duration-500 bg-white/5">
+                       <span className="font-black text-xl">4-W</span>
+                    </div>
+                    <h4 className="font-bold text-xl mb-3 text-white uppercase tracking-widest">Ultra Stretch</h4>
+                    <p className="text-neutral-400 text-base font-light max-w-[250px]">Omnidirectional flexibility that moves intuitively with your body.</p>
+                </div>
+                <div className="flex flex-col items-center group">
+                   <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-all duration-500 bg-white/5 text-red-500 group-hover:text-red-400">
+                       <span className="font-black text-xl">FE</span>
+                    </div>
+                    <h4 className="font-bold text-xl mb-3 text-white uppercase tracking-widest">Feather Light</h4>
+                    <p className="text-neutral-400 text-base font-light max-w-[250px]">Proprietary synthetic blend reduced to the molecular minimum.</p>
+                </div>
+                <div className="flex flex-col items-center group">
+                    <div className="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center mb-8 group-hover:border-white transition-all duration-500 bg-white/5">
+                       <span className="font-black text-xl">DR</span>
+                    </div>
+                    <h4 className="font-bold text-xl mb-3 text-white uppercase tracking-widest">Rapid Dry</h4>
+                    <p className="text-neutral-400 text-base font-light max-w-[250px]">Moisture-wicking precision that evaporates sweat in seconds.</p>
+                </div>
+            </div>
         </div>
       </section>
     </div>
