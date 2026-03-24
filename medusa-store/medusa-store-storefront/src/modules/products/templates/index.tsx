@@ -13,6 +13,7 @@ import StickySubHeader from "@modules/products/components/sticky-sub-header"
 import ProductHighlights from "@modules/products/components/highlights"
 import ProductSpecifications from "@modules/products/components/specifications"
 import MobileBuyBar from "@modules/products/components/mobile-buy-bar"
+import ProductActionsWrapper from "@modules/products/templates/product-actions-wrapper"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
