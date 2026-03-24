@@ -74,3 +74,10 @@ Join our [Discord server](https://discord.com/invite/medusajs) to meet other com
 - [Twitter](https://twitter.com/medusajs)
 - [LinkedIn](https://www.linkedin.com/company/medusajs)
 - [Medusa Blog](https://medusajs.com/blog/)
+
+
+
+
+URL: http://64.23.160.217:9000/app
+Email: admin@medusa-test.com
+Password: supersecret
