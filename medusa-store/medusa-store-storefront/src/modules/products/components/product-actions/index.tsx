@@ -40,13 +40,22 @@ export default function ProductActions({
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
 
-  // If there is only 1 variant, preselect the options
+  // Preselect the first variant by default
   useEffect(() => {
-    if (product.variants?.length === 1) {
-      const variantOptions = optionsAsKeymap(product.variants[0].options)
-      setOptions(variantOptions ?? {})
+    if (product.variants && product.variants.length > 0) {
+      const vId = searchParams.get("v_id")
+      const variantToSelect = vId 
+        ? product.variants.find(v => v.id === vId) || product.variants[0]
+        : product.variants[0]
+      
+      const variantOptions = optionsAsKeymap(variantToSelect.options)
+      
+      // Only update if options are not yet set or are different (to avoid loop)
+      if (Object.keys(options).length === 0 || !isEqual(variantOptions, options)) {
+          setOptions(variantOptions ?? {})
+      }
     }
-  }, [product.variants])
+  }, [product.variants, searchParams])
 
   const selectedVariant = useMemo(() => {
     if (!product.variants || product.variants.length === 0) {
