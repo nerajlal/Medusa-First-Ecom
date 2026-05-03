@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
 @layer utilities {
   /* Chrome, Safari and Opera */
@@ -157,4 +158,22 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+}
+
+/* Raley's Design System */
+
+.raleys-font {
+  font-family: 'Inter', sans-serif !important;
+}
+
+.product-card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #2d5a27 0%, #4a8c42 100%);
 }

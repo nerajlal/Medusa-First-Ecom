@@ -1,7 +1,12 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
-import { Playfair_Display, Outfit } from "next/font/google"
-import "styles/globals.css"
+import { Inter, Playfair_Display, Outfit } from "next/font/google"
+import "../styles/raleys.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -19,8 +24,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-mode="light" className={`${playfair.variable} ${outfit.variable}`}>
-      <body className="font-sans antialiased text-ui-fg-base bg-white selection:bg-gold-200">
+    <html lang="en" data-mode="light" className={`${inter.variable} ${playfair.variable} ${outfit.variable}`}>
+      <body className="font-sans antialiased bg-white">
         <main className="relative">{props.children}</main>
       </body>
     </html>
