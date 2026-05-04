@@ -11,6 +11,8 @@ import OptionSelect from "./option-select"
 import { HttpTypes } from "@medusajs/types"
 import { isSimpleProduct } from "@lib/util/product"
 
+import { Plus, Minus } from "@medusajs/icons"
+
 type MobileActionsProps = {
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
@@ -21,6 +23,8 @@ type MobileActionsProps = {
   isAdding?: boolean
   show: boolean
   optionsDisabled: boolean
+  quantity: number
+  setQuantity: (quantity: number) => void
 }
 
 const MobileActions: React.FC<MobileActionsProps> = ({
@@ -33,6 +37,8 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   isAdding,
   show,
   optionsDisabled,
+  quantity,
+  setQuantity,
 }) => {
   const { state, open, close } = useToggleState()
 
@@ -70,34 +76,36 @@ const MobileActions: React.FC<MobileActionsProps> = ({
           leaveTo="opacity-0"
         >
           <div
-            className="bg-white flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full w-full border-t border-gray-200"
+            className="bg-white flex flex-col gap-y-3 justify-center items-center text-large-regular p-4 h-full w-full border-t border-gray-200 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]"
             data-testid="mobile-actions"
           >
-            <div className="flex items-center gap-x-2">
-              <span data-testid="mobile-title">{product.title}</span>
-              <span>—</span>
-              {selectedPrice ? (
-                <div className="flex items-end gap-x-2 text-ui-fg-base">
-                  {selectedPrice.price_type === "sale" && (
-                    <p>
-                      <span className="line-through text-small-regular">
-                        {selectedPrice.original_price}
-                      </span>
-                    </p>
-                  )}
-                  <span
-                    className={clx({
-                      "text-ui-fg-interactive":
-                        selectedPrice.price_type === "sale",
-                    })}
-                  >
-                    {selectedPrice.calculated_price}
-                  </span>
-                </div>
-              ) : (
-                <div></div>
-              )}
+            <div className="flex items-center justify-between w-full">
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-gray-900 truncate max-w-[150px]" data-testid="mobile-title">{product.title}</span>
+                {selectedPrice && (
+                   <span className="text-xs text-gray-500">{selectedPrice.calculated_price}</span>
+                )}
+              </div>
+              
+              <div className="flex items-center bg-gray-50 rounded-full p-1 border border-gray-100">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  disabled={quantity <= 1 || isAdding}
+                  className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-white transition-colors disabled:opacity-50"
+                >
+                  <Minus />
+                </button>
+                <span className="font-bold text-gray-900 w-8 text-center text-sm">{quantity}</span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  disabled={isAdding}
+                  className="w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-white transition-colors disabled:opacity-50"
+                >
+                  <Plus />
+                </button>
+              </div>
             </div>
+
             <div className={clx("grid grid-cols-2 w-full gap-x-4", {
               "!grid-cols-1": isSimple
             })}>

@@ -15,6 +15,7 @@ type ProductTemplateProps = {
   region: HttpTypes.StoreRegion
   countryCode: string
   images: HttpTypes.StoreProductImage[]
+  vId?: string
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({
@@ -22,6 +23,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   region,
   countryCode,
   images,
+  vId,
 }) => {
   if (!product || !product.id) {
     return notFound()
@@ -36,7 +38,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         >
           {/* Left Column: Image Gallery */}
           <div className="w-full relative">
-            <div className="bg-gray-50 rounded-[2rem] p-8 aspect-square flex items-center justify-center overflow-hidden border border-gray-100">
+            <div className="bg-gray-50 rounded-[2rem] p-4 md:p-8 flex items-center justify-center border border-gray-100">
                <VariantGallery images={images} variants={product.variants ?? []} />
             </div>
           </div>
@@ -63,7 +65,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
                   />
                 }
               >
-                <ProductActionsWrapper id={product.id} region={region} />
+                <ProductActionsWrapper id={product.id} region={region} vId={vId} />
               </Suspense>
             </div>
 

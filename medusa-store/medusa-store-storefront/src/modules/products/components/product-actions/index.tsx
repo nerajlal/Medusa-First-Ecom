@@ -12,17 +12,20 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import ProductPrice from "../product-price"
 import MobileActions from "./mobile-actions"
 import { useRouter } from "next/navigation"
+import { Plus, Minus } from "@medusajs/icons"
 
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
   disabled?: boolean
+  vId?: string
 }
 
 const optionsAsKeymap = (
   variantOptions: HttpTypes.StoreProductVariant["options"]
 ) => {
-  return variantOptions?.reduce((acc: Record<string, string>, varopt: any) => {
+  if (!variantOptions) return {}
+  return variantOptions.reduce((acc: Record<string, string>, varopt: any) => {
     acc[varopt.option_id] = varopt.value
     return acc
   }, {})
@@ -31,27 +34,34 @@ const optionsAsKeymap = (
 export default function ProductActions({
   product,
   disabled,
+  vId,
 }: ProductActionsProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const [options, setOptions] = useState<Record<string, string | undefined>>({})
+  const [options, setOptions] = useState<Record<string, string | undefined>>(() => {
+    const selectedVariant = vId 
+      ? product.variants?.find(v => v.id === vId) || product.variants?.[0]
+      : product.variants?.[0]
+    
+    return (selectedVariant ? optionsAsKeymap(selectedVariant.options) : {}) as Record<string, string | undefined>
+  })
+  const [quantity, setQuantity] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
   const countryCode = useParams().countryCode as string
 
-  // Preselect the first variant by default
+  // Update options when vId changes (from search params)
   useEffect(() => {
     if (product.variants && product.variants.length > 0) {
-      const vId = searchParams.get("v_id")
-      const variantToSelect = vId 
-        ? product.variants.find(v => v.id === vId) || product.variants[0]
+      const currentVId = searchParams.get("v_id")
+      const variantToSelect = currentVId 
+        ? product.variants.find(v => v.id === currentVId) || product.variants[0]
         : product.variants[0]
       
       const variantOptions = optionsAsKeymap(variantToSelect.options)
       
-      // Only update if options are not yet set or are different (to avoid loop)
-      if (Object.keys(options).length === 0 || !isEqual(variantOptions, options)) {
+      if (!isEqual(variantOptions, options)) {
           setOptions(variantOptions ?? {})
       }
     }
@@ -137,7 +147,7 @@ export default function ProductActions({
 
     await addToCart({
       variantId: selectedVariant.id,
-      quantity: 1,
+      quantity: quantity,
       countryCode,
     })
 
@@ -172,6 +182,26 @@ export default function ProductActions({
 
         <ProductPrice product={product} variant={selectedVariant} />
 
+        <div className="flex flex-col gap-y-2">
+          <div className="flex items-center justify-between bg-white border border-gray-100 rounded-full p-1 shadow-sm">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              disabled={quantity <= 1 || isAdding}
+              className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 transition-colors disabled:opacity-50"
+            >
+              <Minus />
+            </button>
+            <span className="font-bold text-gray-900 w-12 text-center">{quantity}</span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              disabled={isAdding}
+              className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-50 transition-colors disabled:opacity-50"
+            >
+              <Plus />
+            </button>
+          </div>
+        </div>
+
         <Button
           onClick={handleAddToCart}
           disabled={
@@ -186,7 +216,7 @@ export default function ProductActions({
           isLoading={isAdding}
           data-testid="add-product-button"
         >
-          {!selectedVariant && !options
+          {!selectedVariant
             ? "Choose your edition"
             : !inStock || !isValidVariant
               ? "Currently Unavailable"
@@ -202,6 +232,8 @@ export default function ProductActions({
           isAdding={isAdding}
           show={!inView}
           optionsDisabled={!!disabled || isAdding}
+          quantity={quantity}
+          setQuantity={setQuantity}
         />
       </div>
     </>
