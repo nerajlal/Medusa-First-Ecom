@@ -16,13 +16,15 @@ export const ProductCard = ({ product, region }: ProductCardProps) => {
 
   const price = cheapestVariant?.calculated_price?.calculated_amount ?? 0
   const currencyCode = region.currency_code?.toUpperCase() ?? "USD"
+  
+  const thumbnail = product.thumbnail || product.images?.[0]?.url
 
   return (
     <div className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
       <LocalizedClientLink href={`/products/${product.handle}`} className="relative aspect-square overflow-hidden rounded-xl mb-4 bg-gray-50 flex items-center justify-center">
-        {product.thumbnail ? (
+        {thumbnail ? (
           <Image 
-            src={product.thumbnail} 
+            src={thumbnail} 
             alt={product.title} 
             fill
             sizes="(max-width: 768px) 100vw, 300px"
