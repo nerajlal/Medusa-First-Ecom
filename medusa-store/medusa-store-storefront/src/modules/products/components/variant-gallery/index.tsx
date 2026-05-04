@@ -95,11 +95,6 @@ const VariantGallery = ({ images, variants }: VariantGalleryProps) => {
                         sizes="(max-width: 768px) 100vw, 800px"
                     />
                     
-                    {/* Floating Badge (OnePlus Style) */}
-                    <div className="absolute top-6 left-6 flex flex-col gap-2">
-                        <span className="bg-red-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">New Arrival</span>
-                        <span className="bg-white/80 backdrop-blur-md text-neutral-900 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-white/50 shadow-sm">Premium Edition</span>
-                    </div>
                 </div>
             </div>
         </div>
