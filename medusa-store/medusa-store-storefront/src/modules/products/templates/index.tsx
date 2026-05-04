@@ -38,7 +38,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         >
           {/* Left Column: Image Gallery */}
           <div className="w-full relative">
-            <div className="bg-gray-50 rounded-[2rem] p-4 md:p-8 flex items-center justify-center border border-gray-100">
+            <div className="bg-gray-50 rounded-[2rem] p-4 md:p-8 border border-gray-100 w-full">
                <VariantGallery images={images} variants={product.variants ?? []} />
             </div>
           </div>

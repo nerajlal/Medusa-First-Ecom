@@ -139,6 +139,8 @@ export default function ProductActions({
 
   const inView = useIntersection(actionsRef, "0px")
 
+  const [isSuccess, setIsSuccess] = useState(false)
+
   // add the selected variant to the cart
   const handleAddToCart = async () => {
     if (!selectedVariant?.id) return null
@@ -151,8 +153,15 @@ export default function ProductActions({
       countryCode,
     })
 
-    router.refresh()
     setIsAdding(false)
+    setIsSuccess(true)
+    
+    // Reset success state after 2 seconds
+    setTimeout(() => {
+        setIsSuccess(false)
+    }, 2000)
+
+    router.refresh()
   }
 
   return (
@@ -211,8 +220,10 @@ export default function ProductActions({
             isAdding ||
             !isValidVariant
           }
-          variant="primary"
-          className="w-full h-14 rounded-full uppercase tracking-[0.2em] font-black text-xs bg-black text-white hover:bg-neutral-800 transition-all shadow-xl active:scale-[0.98] border-none"
+          className={clx(
+            "w-full h-14 rounded-full uppercase tracking-[0.2em] font-black text-xs transition-all shadow-xl active:scale-[0.98] border-none",
+            isSuccess ? "bg-green-600 text-white hover:bg-green-700" : "bg-black text-white hover:bg-neutral-800"
+          )}
           isLoading={isAdding}
           data-testid="add-product-button"
         >
@@ -220,7 +231,9 @@ export default function ProductActions({
             ? "Choose your edition"
             : !inStock || !isValidVariant
               ? "Currently Unavailable"
-              : "Add to Bag"}
+              : isSuccess 
+                ? "Added to Bag!" 
+                : "Add to Bag"}
         </Button>
         <MobileActions
           product={product}
@@ -230,6 +243,7 @@ export default function ProductActions({
           inStock={inStock}
           handleAddToCart={handleAddToCart}
           isAdding={isAdding}
+          isSuccess={isSuccess}
           show={!inView}
           optionsDisabled={!!disabled || isAdding}
           quantity={quantity}

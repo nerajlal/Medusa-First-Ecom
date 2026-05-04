@@ -11,10 +11,12 @@ import PaginatedProducts from "./paginated-products"
 const StoreTemplate = async ({
   sortBy,
   page,
+  q,
   countryCode,
 }: {
   sortBy?: SortOptions
   page?: string
+  q?: string
   countryCode: string
 }) => {
   const pageNumber = page ? parseInt(page) : 1
@@ -66,7 +68,7 @@ const StoreTemplate = async ({
         <section className="flex-1">
           <div className="flex items-center justify-between mb-10">
             <h1 className="text-3xl font-black text-gray-900 tracking-tight" data-testid="store-page-title">
-              Full Grocery Aisle
+              {q ? `Results for "${q}"` : "Full Grocery Aisle"}
             </h1>
             <RefinementList sortBy={sort} />
           </div>
@@ -75,6 +77,7 @@ const StoreTemplate = async ({
             <PaginatedProducts
               sortBy={sort}
               page={pageNumber}
+              q={q}
               countryCode={countryCode}
             />
           </Suspense>
