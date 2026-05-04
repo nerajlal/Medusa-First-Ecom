@@ -1,4 +1,4 @@
-import React from 'react'
+import Image from "next/image"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
@@ -21,10 +21,12 @@ export const ProductCard = ({ product, region }: ProductCardProps) => {
     <div className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
       <LocalizedClientLink href={`/products/${product.handle}`} className="relative aspect-square overflow-hidden rounded-xl mb-4 bg-gray-50 flex items-center justify-center">
         {product.thumbnail ? (
-          <img 
+          <Image 
             src={product.thumbnail} 
             alt={product.title} 
-            className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500"
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
+            className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
           <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
