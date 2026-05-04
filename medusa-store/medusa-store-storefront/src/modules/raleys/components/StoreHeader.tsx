@@ -1,21 +1,9 @@
-"use client"
-
-import React, { Suspense, useState } from 'react';
-import { useRouter, useParams } from "next/navigation"
+import React, { Suspense } from 'react';
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
+import { SearchInput } from "./SearchInput"
 
-export const StoreHeader = () => {
-  const router = useRouter()
-  const { countryCode } = useParams()
-  const [searchValue, setSearchValue] = useState("")
-
-  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && searchValue.trim()) {
-      router.push(`/${countryCode}/store?q=${encodeURIComponent(searchValue.trim())}`)
-    }
-  }
-
+export const StoreHeader = ({ countryCode }: { countryCode: string }) => {
   return (
     <header className="sticky top-0 z-[100] bg-white border-b border-gray-200 shadow-sm">
       <div className="px-4 sm:px-6 py-3 flex items-center justify-between">
@@ -35,19 +23,7 @@ export const StoreHeader = () => {
 
         {/* Desktop Search */}
         <div className="flex-1 max-w-xl mx-8 hidden md:block">
-          <div className="relative group">
-            <input
-              type="text"
-              placeholder="Search groceries..."
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={handleSearch}
-              className="w-full bg-gray-100 rounded-lg px-12 py-2.5 border-none focus:ring-2 focus:ring-green-600 outline-none transition-all group-hover:bg-gray-200"
-            />
-            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-gray-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
-            </div>
-          </div>
+          <SearchInput countryCode={countryCode} />
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
@@ -68,19 +44,7 @@ export const StoreHeader = () => {
 
       {/* Mobile Search - Second Row */}
       <div className="md:hidden px-4 pb-3">
-        <div className="relative group">
-          <input
-            type="text"
-            placeholder="Search groceries..."
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={handleSearch}
-            className="w-full bg-gray-100 rounded-lg px-10 py-2 border-none focus:ring-2 focus:ring-green-600 outline-none transition-all"
-          />
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
-          </div>
-        </div>
+        <SearchInput countryCode={countryCode} />
       </div>
     </header>
   );
