@@ -44,9 +44,7 @@ export default async function CategoryTemplate({
   getParents(category)
 
   return (
-    <div className="bg-white min-h-screen raleys-font">
-      <StoreHeader />
-
+    <div className="raleys-font">
       <main className="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-16">
         {/* Refined Sidebar */}
         <aside className="w-full lg:w-64 flex-shrink-0">

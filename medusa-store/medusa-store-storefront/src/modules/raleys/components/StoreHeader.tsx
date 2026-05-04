@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CartButton from "@modules/layout/components/cart-button"
 
 export const StoreHeader = () => (
   <header className="sticky top-0 z-[100] bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
@@ -37,13 +38,26 @@ export const StoreHeader = () => (
     </div>
 
     <div className="flex items-center gap-4">
-      <button className="hidden md:flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-green-800 transition-colors">
+      <LocalizedClientLink href="/account" className="hidden md:flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-green-800 transition-colors">
         Log In
-      </button>
-      <button className="bg-green-800 text-white px-6 py-2.5 rounded-full font-bold hover:bg-green-700 transition-all shadow-md active:scale-95 flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>
-        Cart · 0
-      </button>
+      </LocalizedClientLink>
+      
+      <Suspense fallback={
+        <div className="bg-green-800 text-white px-6 py-2.5 rounded-full font-bold shadow-md flex items-center gap-2 opacity-80">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" /><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" /></svg>
+          Cart · 0
+        </div>
+      }>
+        <CartButtonWrapper />
+      </Suspense>
     </div>
   </header>
 );
+
+const CartButtonWrapper = () => {
+  return (
+    <div className="raleys-cart-button">
+      <CartButton />
+    </div>
+  )
+}

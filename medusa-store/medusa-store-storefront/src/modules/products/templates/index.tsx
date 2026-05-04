@@ -1,19 +1,14 @@
 import React, { Suspense } from "react"
-
-import VariantGallery from "@modules/products/components/variant-gallery"
+import { notFound } from "next/navigation"
+import { HttpTypes } from "@medusajs/types"
+import { StoreHeader } from "@modules/raleys/components/StoreHeader"
 import ProductActions from "@modules/products/components/product-actions"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
-import { notFound } from "next/navigation"
-import { HttpTypes } from "@medusajs/types"
-
-import StickySubHeader from "@modules/products/components/sticky-sub-header"
-import ProductHighlights from "@modules/products/components/highlights"
-import ProductSpecifications from "@modules/products/components/specifications"
-import MobileBuyBar from "@modules/products/components/mobile-buy-bar"
 import ProductActionsWrapper from "@modules/products/templates/product-actions-wrapper"
+import VariantGallery from "@modules/products/components/variant-gallery"
 
 type ProductTemplateProps = {
   product: HttpTypes.StoreProduct
@@ -33,61 +28,63 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   }
 
   return (
-    <>
-      {/* OnePlus Inspired Sticky Header */}
-      <StickySubHeader product={product} />
+    <div className="raleys-font">
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12"
+          data-testid="product-container"
+        >
+          {/* Left Column: Image Gallery */}
+          <div className="w-full relative">
+            <div className="bg-gray-50 rounded-[2rem] p-8 aspect-square flex items-center justify-center overflow-hidden border border-gray-100">
+               <VariantGallery images={images} variants={product.variants ?? []} />
+            </div>
+          </div>
 
-      <div
-        className="content-container grid grid-cols-1 small:grid-cols-[1fr_480px] py-16 gap-x-16 relative"
-        data-testid="product-container"
-      >
-        {/* Left Column: High-Impact Image Gallery */}
-        <div className="block w-full relative">
-          <VariantGallery images={images} variants={product.variants ?? []} />
-        </div>
+          {/* Right Column: Product Info & Actions */}
+          <div className="flex flex-col gap-y-8">
+            <div>
+               <div className="flex items-center gap-2 mb-4">
+                  <span className="bg-green-100 text-[#1a4d2e] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                    Fresh Selection
+                  </span>
+                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+               </div>
+               <ProductInfo product={product} />
+            </div>
 
-        {/* Right Column: Sticky Product Info & Actions */}
-        <div className="flex flex-col small:sticky small:top-40 h-fit w-full py-8 small:py-0 gap-y-12">
-          <ProductInfo product={product} />
+            <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
+              <Suspense
+                fallback={
+                  <ProductActions
+                    disabled={true}
+                    product={product}
+                    region={region}
+                  />
+                }
+              >
+                <ProductActionsWrapper id={product.id} region={region} />
+              </Suspense>
+            </div>
 
-          <Suspense
-            fallback={
-              <ProductActions
-                disabled={true}
-                product={product}
-                region={region}
-              />
-            }
-          >
-            <ProductActionsWrapper id={product.id} region={region} />
-          </Suspense>
-
-          {/* We keep standard tabs for standard info but hide the redundant Specs/Product Info if they are now in the Highlights/Specs sections */}
-           <div className="border-t border-ui-border-base pt-12 opacity-50 grayscale hover:opacity-100 transition-all">
-            <ProductTabs product={product} />
+            <div className="border-t border-gray-100 pt-8">
+              <ProductTabs product={product} />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* OnePlus Inspired Experience Sections */}
-      <div className="mt-16 small:mt-32">
-         <ProductHighlights product={product} />
-         <ProductSpecifications product={product} />
-      </div>
-
-      {/* Related Products Section */}
-      <div
-        className="content-container my-16 small:my-32 border-t border-ui-border-base pt-16"
-        data-testid="related-products-container"
-      >
-        <Suspense fallback={<SkeletonRelatedProducts />}>
-          <RelatedProducts product={product} countryCode={countryCode} />
-        </Suspense>
-      </div>
-
-      {/* Mobile Sticky Buy Bar */}
-      <MobileBuyBar product={product} />
-    </>
+        {/* Related Products Section */}
+        <div
+          className="mt-24 border-t border-gray-100 pt-16"
+          data-testid="related-products-container"
+        >
+          <h2 className="text-3xl font-black text-gray-900 mb-10 tracking-tight">You might also like</h2>
+          <Suspense fallback={<SkeletonRelatedProducts />}>
+            <RelatedProducts product={product} countryCode={countryCode} />
+          </Suspense>
+        </div>
+      </main>
+    </div>
   )
 }
 
