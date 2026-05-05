@@ -17,15 +17,15 @@ export const metadata: Metadata = {
 
 export default async function PageLayout(props: { children: React.ReactNode, params: Promise<{ countryCode: string }> }) {
   const { countryCode } = await props.params
-  const customer = await retrieveCustomer()
-  const cart = await retrieveCart()
-  let shippingOptions: StoreCartShippingOption[] = []
+  
+  // Parallelize all layout data retrieval
+  const [customer, cart, shippingOptionsData] = await Promise.all([
+    retrieveCustomer().catch(() => null),
+    retrieveCart().catch(() => null),
+    listCartOptions().catch(() => ({ shipping_options: [] }))
+  ])
 
-  if (cart) {
-    const { shipping_options } = await listCartOptions()
-
-    shippingOptions = shipping_options
-  }
+  const shippingOptions = shippingOptionsData?.shipping_options ?? []
 
   return (
     <div className="bg-white min-h-screen raleys-font">

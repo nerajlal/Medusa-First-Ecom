@@ -56,17 +56,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             </div>
 
             <div className="bg-gray-50 p-8 rounded-3xl border border-gray-100">
-              <Suspense
-                fallback={
-                  <ProductActions
-                    disabled={true}
-                    product={product}
-                    region={region}
-                  />
-                }
-              >
-                <ProductActionsWrapper id={product.id} region={region} vId={vId} />
-              </Suspense>
+              <ProductActions product={product} region={region} vId={vId} />
             </div>
 
             <div className="border-t border-gray-100 pt-8">

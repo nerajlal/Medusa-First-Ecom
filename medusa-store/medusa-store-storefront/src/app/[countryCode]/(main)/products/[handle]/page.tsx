@@ -84,19 +84,20 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function ProductPage(props: Props) {
   const params = await props.params
-  const region = await getRegion(params.countryCode)
   const searchParams = await props.searchParams
-
   const selectedVariantId = searchParams.v_id
 
-  if (!region) {
+  const [region, pricedProduct] = await Promise.all([
+    getRegion(params.countryCode),
+    listProducts({
+      countryCode: params.countryCode,
+      queryParams: { handle: params.handle },
+    }).then(({ response }) => response.products[0])
+  ])
+
+  if (!region || !pricedProduct) {
     notFound()
   }
-
-  const pricedProduct = await listProducts({
-    countryCode: params.countryCode,
-    queryParams: { handle: params.handle },
-  }).then(({ response }) => response.products[0])
 
 
   if (!pricedProduct) {
