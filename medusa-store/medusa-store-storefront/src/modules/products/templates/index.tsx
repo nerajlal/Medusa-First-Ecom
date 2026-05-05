@@ -30,7 +30,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   }
 
   return (
-    <div className="raleys-font">
+    <div className="raleys-font animate-fade-in">
       <main className="max-w-7xl mx-auto px-6 py-12">
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12"

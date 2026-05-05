@@ -24,8 +24,8 @@ const StoreTemplate = async ({
   const categories = await listCategories()
 
   return (
-    <div className="raleys-font">
-      <main className="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-16">
+    <div className="raleys-font animate-fade-in">
+      <main className="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-16 animate-fade-in">
         {/* Refined Sidebar */}
         <aside className="w-full lg:w-64 flex-shrink-0">
           <div className="sticky top-28">
